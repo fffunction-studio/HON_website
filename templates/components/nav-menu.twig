@@ -1,0 +1,16 @@
+{% set query = craft.entries().section("pages") %}
+
+{% set entries = query.all() %}
+
+<ul class="nav-menu">
+  {# Display the entries #}
+  {# {% for entry in entries %}
+    <li class="nav-menu-item">
+      <a href="{{ entry.url }}">{{ entry.title }}</a>
+    </li>
+  {% endfor %} #}
+
+  <li class="nav-menu-item">index</li>
+  <li class="nav-menu-item">info</li>
+  <li class="nav-menu-item">journal</li>
+</ul>

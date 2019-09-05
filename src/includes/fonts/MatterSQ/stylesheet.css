@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'MatterSQ';
+  font-weight: 500;
+  font-style: normal;
+  src: url('MatterSQ-Medium.eot?') format('eot'),
+       url('MatterSQ-Medium.woff2') format('woff2'),
+       url('MatterSQ-Medium.woff') format('woff'),
+       url('MatterSQ-Medium.otf')  format('opentype'),
+       url('MatterSQ-Medium.ttf')  format('truetype'),
+       url('MatterSQ-Medium.svg#MatterSQ-Medium') format('svg');
+}
+
+@font-face {
+  font-family: 'MatterSQ';
+  font-weight: 400;
+  font-style: normal;
+  src: url('MatterSQ-Regular.eot?') format('eot'),
+       url('MatterSQ-Regular.woff2') format('woff2'),
+       url('MatterSQ-Regular.woff') format('woff'),
+       url('MatterSQ-Regular.otf')  format('opentype'),
+       url('MatterSQ-Regular.ttf')  format('truetype'),
+       url('MatterSQ-Regular.svg#MatterSQ-Regular') format('svg');
+}

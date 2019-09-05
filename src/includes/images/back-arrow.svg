@@ -1,0 +1,16 @@
+
+<svg width="41px" height="37px" viewBox="0 0 41 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="product-2" transform="translate(-146.000000, -123.000000)" stroke="#323232">
+            <g id="Group-5" transform="translate(146.000000, 124.000000)">
+                <g id="Group-2">
+                    <g id="Group-4" transform="translate(9.979021, 17.686364) rotate(-90.000000) translate(-9.979021, -17.686364) translate(-7.520979, 8.686364)">
+                        <path d="M17.4388112,0 L34.7912916,17.5377475" id="Line-3"></path>
+                        <path d="M0,0 L17.3524804,17.5377475" id="Line-3-Copy" transform="translate(8.719406, 8.812500) scale(-1, 1) translate(-8.719406, -8.812500) "></path>
+                    </g>
+                </g>
+                <path d="M40,17.6962891 L1,17.6962891" id="Line"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+.main-wrapper {
+  @apply bg-white min-h-screen relative;
+  flex: 1 0 auto;
+}
+
+.blur-wrapper::after {
+  filter: blur(0px);
+  transition: filter $medium ease;
+
+  &.active {
+  filter: blur(10px);
+  }
+}

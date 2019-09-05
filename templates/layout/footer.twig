@@ -1,0 +1,44 @@
+{% set footerWidget = craft.entries().section("widgets").slug("footer").one() %}
+
+<div id="footer" class="footer-wrapper relative">
+
+  <footer class="section footer-main z-40">
+    <div class="container">
+
+
+        {% block footer %}
+
+      {% if footerWidget is defined %}
+          <div class="row">
+            <div class="col w-2/12 mr-1/12">
+              <p class="text-sm">Address</p>
+              <p>{{ footerWidget.address|nl2br }}</p>
+            </div>
+            <div class="col w-2/12 mr-1/12">
+              <p class="text-sm">Working at</p>
+              <p>{{ footerWidget.workingAt|nl2br }}</p>
+            </div>
+            <div class="col w-2/12 mr-1/12">
+              <p class="text-sm">Services</p>
+              <p>{{ footerWidget.services|nl2br }}</p>
+            </div>
+            <div class="col w-2/12 mr-1/12">
+              <p class="text-sm">Social</p>
+              <p>{{ footerWidget.social|nl2br }}</p>
+            </div>
+          </div>
+      {% endif %}
+
+<div class="flex justify-between text-sm mt-40">
+  <div>Copyright &copy; 2019 studio hongjie yang.</div>
+  <div>website designed and build by fffunction.studio</div>
+</div>
+
+
+        {% endblock %}
+
+
+    </div>
+  </footer>
+
+</div>

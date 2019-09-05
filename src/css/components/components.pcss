@@ -1,0 +1,58 @@
+button,
+.button {
+    @apply px-4 py-2 bg-gray-400 mt-4;
+    transition: $short easeOutCirc;
+    
+    &:hover {
+        @apply shadow-lg;
+        transform: translateY(-0.125em);
+    }
+
+    &:focus {
+        @apply bg-gray-600;
+        outline: none;
+        box-shadow: none;
+        transform: translateY(0);
+    }
+}
+
+table {
+  tr:not(:last-child) {
+    @apply border-b border-gray-300
+  }
+}
+
+.background-swapper {
+  z-index: -1;
+  & > .to,
+  & > .from {
+    @apply absolute w-full h-full;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/*  */
+.list {
+  position: relative;
+}
+
+.list-enter {
+	transform: scale(0) translateY(50px);
+	opacity:0;
+}
+
+.list-leave-to{
+	transform: translateY(30px);
+  transform: scale(0);
+	opacity:0;
+}
+
+.list-leave-active {
+	position: absolute;
+	/* z-index:-1; */
+}
+
+.list-item {
+	transition: all $short ease-in-out;
+}

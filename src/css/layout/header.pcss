@@ -1,0 +1,49 @@
+.header-offset {
+  padding-top: 120px;
+}
+
+.header-main {
+  @apply fixed w-full flex items-center;
+}
+
+.header-main {
+  @apply bg-transparent;
+  padding-bottom: calc($site-offset / 2);
+  padding-top: calc($site-offset * 2);
+  transition: $short ease;
+  
+
+  &.pinned {
+    @apply bg-white;
+    padding-top: $site-offset;
+  }
+
+  .burger {
+    @apply flex flex-col justify-between;
+    font-size: inherit;
+    width: $burger-width;
+    height: $burger-height;
+    span {
+      @apply bg-black w-full self-end;
+      height: 2px;
+      transition: $medium easeOutCirc;
+    }
+
+    &.active {
+      span {
+        margin: 0 !important;
+        &:first-child {
+          transform: translateY(calc($burger-height / 2 - 1px)) rotate(45deg);
+        }
+        &:last-child {
+          transform: translateY(calc($burger-height / -2 + 1px)) rotate(-45deg);
+        }
+      }
+    }
+
+    @mixin hover-child span:first-child, margin-top, 4px;
+    @mixin hover-child span:last-child, margin-bottom, 4px;
+  }
+  &.animating {
+  }
+}

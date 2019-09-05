@@ -1,0 +1,100 @@
+{% extends "core/base.twig" %}
+
+{% block main %}
+  <div id="archive-app"></div>
+  {% set objects = craft.entries().section("objects").all() %}
+
+  {# <section class="section header-offset fixed top-0 left-0 w-full">
+    <div class="container">
+
+      <div class="row justify-between">
+        <div class="col lg:w-3/12 xl:w-2/12">
+          {% set projectCategories = craft.categories.group("projects").all() %}
+
+          <p class="text-sm mb-4">Specimen</p>
+          <ul>
+            {% for item in projectCategories %}
+              {% set counter = 0 %}
+              {% for entry in objects if entry.projectTitle.one().title == item.title %}
+              {% set counter = counter + 1 %}
+              {% endfor %}
+
+              <li>
+                {{ item.title }}
+                {% if counter > 0 %}
+                  <span class="absolute text-xs ml-1">{{ counter }}</span>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+
+        <div class="col lg:w-3/12 xl:w-2/12">
+
+          <div class="row">
+            <div class="col flex-grow">
+              {% set objectCategories = craft.categories.group("objects").all() %}
+
+              <p class="text-sm text-right mb-4">Type</p>
+              <ul class="text-right">
+                <li>All</li>
+                {% for item in objectCategories %}
+                  <li>{{ item.title }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div class="col flex-shrink">
+              <p class="text-sm text-right mb-4">Year</p>
+              <ul class="text-right">
+                <li>2019</li>
+                <li>2018</li>
+                <li>2017</li>
+                <li>2016</li>
+                <li>2015</li>
+                <li>2014</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section header-offset">
+    <div class="container">
+
+      <div class="row">
+        <div class="col md:w-6/12 md:ml-3/12 xl:w-8/12 xl:ml-2/12">
+          <div class="row flex-wrap">
+
+            {% for item in 1..8 %}
+
+              <div class="col w-full lg:w-6/12 mb-12">
+                <div class="w-full bg-gray-500" style="padding-top: 150%"></div>
+                <div class="flex justify-between mt-2">
+                  <div>2018</div>
+                  <div>
+                    Synthesis Monolith<br>
+                    Mirror
+                  </div>
+                </div>
+              </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section> #}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ siteUrl }}/dest/js/archive.js"></script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "core/base.twig" %}
+
+{% block main %}
+
+  {% set articles = craft.entries().section("journalArticles").all() %}
+
+  <section class="section header-offset fixed top-0 left-0 w-full">
+    <div class="container">
+
+      <div class="row justify-between">
+      
+        <div class="col lg:w-3/12 xl:w-2/12">
+
+          <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+
+        </div>
+
+        <div class="col lg:w-3/12 xl:w-2/12">
+              <p class="text-sm text-right mb-4">Year</p>
+              <ul class="text-right">
+                <li>2019</li>
+                <li>2018</li>
+                <li>2017</li>
+                <li>2016</li>
+                <li>2015</li>
+                <li>2014</li>
+              </ul>
+            </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section relative header-offset">
+    <div class="container">
+
+      <div class="row">
+        <div class="col lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+
+          {% for item in 1..4 %}
+
+            <div class="w-full mb-20">
+              <div class="w-full bg-gray-500" style="padding-top: 66%"></div>
+              <div class="flex pt-4">
+                <div class="w-7/12">
+                  Radical fossils bowl at the exhibition time is now presented by baars &amp; bloemhoff. during dutch design week 2018. 
+                </div>
+                <div class="w-3/12 ml-2/12 opacity-25">
+                  broeinest ehv, eindhoven,<br>
+                  the netherlands.<br>
+                  20 - 28 oct. 2018
+                </div>
+              </div>
+              <div>
+                <a class="border-b border-black" href="#">more info</a>
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

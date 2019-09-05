@@ -1,0 +1,45 @@
+{# Default page #}
+
+{% extends "core/base.twig" %}
+
+{% block main %}
+
+  <section class="min-h-screen">
+    <div class="background-swapper absolute inset-0">
+      <div class="from"></div>
+      <div class="to"></div>
+    </div>
+
+    <div class="background-loader invisible h-0 overflow-hidden">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
+      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
+    </div>
+
+    <div class="container">
+    
+      <div class="row mt-40">
+        <div class="col">
+          <p class="text-sm">Specimen</p>
+          <ul>
+            <li class="toggle-background" data-index="0">All</li>
+            <li class="toggle-background" data-index="1">Synthetis Monolith</li>
+            <li class="toggle-background" data-index="2">Radical Fossils</li>
+            <li class="toggle-background" data-index="3">Metallic Transformation</li>
+            <li class="toggle-background" data-index="4">The Post Natural Artic</li>
+            <li class="toggle-background" data-index="5">Semi-human Vase</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ currentSite.baseUrl }}/dest/js/landing.js"></script>
+{% endblock %}
