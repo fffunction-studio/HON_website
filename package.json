@@ -16,7 +16,8 @@
     "build": "webpack --config webpack.prod.js",
     "setup": "npm run craft-install; npm run craft-config; npm run dev",
     "postinstall": "npx tailwind init; npm run compose; npm run plugins;",
-    "browser-sync": "browser-sync start --proxy localhost:8080"
+    "browser-sync": "browser-sync start --proxy localhost:8080",
+    "rsync": "rsync -r -v --exclude-from=.rsyncexclude \"$(npx json -f './config/rsync.json' 'source')\" \"$(npx json -f './config/rsync.json' 'target')\""
   },
   "keywords": [],
   "author": "",
