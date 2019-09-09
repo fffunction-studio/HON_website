@@ -2,41 +2,103 @@
 
 {% extends "core/base.twig" %}
 
+{% set barbaNamespace = "home" %}
+
 {% block main %}
 
-  <section class="min-h-screen">
+  {% set objects = craft.entries.section("objects").all() %}
+  {% set projectCategories = craft.categories.group("projects").all() %}
+
+  {% set backgroundSources = [] %}
+
+  {% for item in projectCategories %}
+    {% set break = false %}
+
+    {% for entry in objects if entry.projectTitle.one().title == item.title and not break %}
+      {% set backgroundSources = backgroundSources | merge([
+        {
+          src: entry.featuredImage.one().url("fw"),
+          title: entry.projectTitle.one().title
+        }
+      ]) %}
+      {% set break = true %}
+    {% endfor %}
+
+  {% endfor %}
+
+  <section class="min-h-screen blur-wrapper">
     <div class="background-swapper absolute inset-0">
       <div class="from"></div>
       <div class="to"></div>
     </div>
 
     <div class="background-loader invisible h-0 overflow-hidden">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-1.jpg" alt="">
-      <img class="background-source" src="{{ currentSite.baseUrl }}/dest/images/background-2.jpg" alt="">
+      {% for source in backgroundSources %}
+        <img class="background-source" src="{{ source.src }}" alt="">
+      {% endfor %}
     </div>
+  </section>
 
+  <section class="section blur-wrapper header-offset fixed top-0 left-0 w-full">
+      <div class="container">
+        <div class="row justify-between">
+          
+          <div class="col">
+            <p class="text-sm mb-4">Specimen</p>
+            <ul>
+            <li>
+              <a href="{{ siteUrl }}index">All</a>
+            </li>
+              {% for item in projectCategories %}
+                {% set counter = 0 %}
+                {% for entry in objects if entry.projectTitle.one().title == item.title %}
+                  {% set counter = counter + 1 %}
+                {% endfor %}
+
+                <li class="leading-relaxed">
+                  <a href="{{ siteUrl }}index?project={{ item.slug }}" data-toggle-background="{{ loop.index0 }}">
+
+                    {{ item.title }}
+                    {% if counter > 0 %}
+                      <span class="absolute text-xs ml-1">{{ counter }}</span>
+                    {% endif %}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  {# <section>
     <div class="container">
-    
       <div class="row mt-40">
         <div class="col">
-          <p class="text-sm">Specimen</p>
+          <p class="text-sm mb-4">Specimen</p>
           <ul>
-            <li class="toggle-background" data-index="0">All</li>
-            <li class="toggle-background" data-index="1">Synthetis Monolith</li>
-            <li class="toggle-background" data-index="2">Radical Fossils</li>
-            <li class="toggle-background" data-index="3">Metallic Transformation</li>
-            <li class="toggle-background" data-index="4">The Post Natural Artic</li>
-            <li class="toggle-background" data-index="5">Semi-human Vase</li>
+            {% for item in projectCategories %}
+              {% set counter = 0 %}
+              {% for entry in objects if entry.projectTitle.one().title == item.title %}
+                {% set counter = counter + 1 %}
+              {% endfor %}
+
+              <li class="leading-relaxed">
+                <a href="{{ siteUrl }}index?project={{ item.slug }}" data-toggle-background="{{ loop.index0 }}">
+
+                  {{ item.title }}
+                  {% if counter > 0 %}
+                    <span class="absolute text-xs ml-1">{{ counter }}</span>
+                  {% endif %}
+                </a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
-
     </div>
-  </section>
+  </section> #}
 
 {% endblock %}
 

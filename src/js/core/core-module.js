@@ -15,7 +15,7 @@ class CoreModule {
 
   destroy() {
     this.events.forEach((event) => {
-      eventBus.off(event.name, event.callback)
+      eventBus.$off(event.name, event.callback)
     })
 
     return { id: this.id, status: true,  message: 'destroyed events' }

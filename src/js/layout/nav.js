@@ -4,8 +4,9 @@ import { CoreEvent } from '../core/core-event'
 
 class Nav extends CoreModule {
   init(options) {
-    this.element = options.element
-    this.blurryContent = document.querySelector('.blur-wrapper')
+    this.element = this.options.element
+    this.burger = document.querySelector('.burger')
+    this.blurryContent = document.querySelectorAll('.blur-wrapper')
     this.addEventListeners()
 
     this.toggles = document.querySelectorAll('.toggle-menu')
@@ -13,7 +14,7 @@ class Nav extends CoreModule {
       toggle.addEventListener('click', this.onToggle)
     })
 
-    this.closers = document.querySelectorAll('.nav-menu-item')
+    this.closers = document.querySelectorAll('.close-menu')
     this.closers.forEach((closer) => {
       closer.addEventListener('click', this.onClose)
     })
@@ -35,12 +36,6 @@ class Nav extends CoreModule {
 
   onToggle(event, options) {
     eventBus.$emit('toggle-menu', event)
-    let target = event.currentTarget
-    if (target.classList.contains('active')) {
-      target.classList.remove('active')
-    } else {
-      target.classList.add('active')
-    }
   }
 
   onClose(event) {
@@ -76,6 +71,7 @@ class Nav extends CoreModule {
 
     if (this.element.classList.contains('active')) {
       this.element.classList.remove('active')
+      this.burger.classList.remove('active')
       this.element.classList.add('animating')
       setTimeout(() => {
         this.element.classList.remove('animating')
@@ -89,14 +85,20 @@ class Nav extends CoreModule {
     }
 
     if (this.element.classList.contains('active')) {
-      this.blurryContent.classList.remove('active')
+      this.blurryContent.forEach(blur => {
+        blur.classList.remove('active')
+      })
+      this.burger.classList.remove('active')
       this.element.classList.remove('active')
       this.element.classList.add('animating')
       setTimeout(() => {
         this.element.classList.remove('animating')
       }, 400)
     } else {
-      this.blurryContent.classList.add('active')
+      this.blurryContent.forEach(blur => {
+        blur.classList.add('active')
+      })
+      this.burger.classList.add('active')
       this.element.classList.add('active')
       this.element.classList.add('animating')
       setTimeout(() => {

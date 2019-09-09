@@ -12,12 +12,6 @@
   padding-top: calc($site-offset * 2);
   transition: $short ease;
   
-
-  &.pinned {
-    @apply bg-white;
-    padding-top: $site-offset;
-  }
-
   .burger {
     @apply flex flex-col justify-between;
     font-size: inherit;
@@ -28,6 +22,9 @@
       height: 2px;
       transition: $medium easeOutCirc;
     }
+    
+    @mixin hover-child span:first-child, margin-top, 4px;
+    @mixin hover-child span:last-child, margin-bottom, 4px;
 
     &.active {
       span {
@@ -39,11 +36,14 @@
           transform: translateY(calc($burger-height / -2 + 1px)) rotate(-45deg);
         }
       }
-    }
-
-    @mixin hover-child span:first-child, margin-top, 4px;
-    @mixin hover-child span:last-child, margin-bottom, 4px;
+    } 
   }
+
+  &.pinned {
+    @apply bg-white;
+    padding-top: $site-offset;
+  }
+
   &.animating {
   }
 }

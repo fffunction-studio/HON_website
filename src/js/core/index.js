@@ -23,7 +23,7 @@ class Core {
 
     this.createScenes()
 
-    eventBus.$on('barba-before-enter', () => {
+    eventBus.$on('barba-after-enter', () => {
       this.modules.forEach((module) => {
         if (module.reinit) {
           module.destroy()

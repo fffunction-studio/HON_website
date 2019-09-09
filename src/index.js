@@ -8,7 +8,7 @@ import { images } from './js/components'
 
 ;(function() {
   core.attach(header, { element: document.querySelector('.header-main') })
-  core.attach(nav, { element: document.querySelector('.nav-main') })
+  core.attach(nav, { element: document.querySelector('.nav-main') }, true)
   // core.attach(footer, true)
   core.attach(barbaManager)
 

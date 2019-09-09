@@ -1,9 +1,14 @@
+/* purgecss start ignore */
 /* fade and slide transition active states (same for leave and enter) */
-.barba-fade-leave-active,
 .barba-fade-enter-active,
-.barba-slide-leave-active,
-.barba-slide-enter-active {
+.barba-right-enter-active,
+.barba-left-enter-active {
   transition: $medium easeInOutCubic;
+}
+.barba-fade-leave-active,
+.barba-right-leave-active,
+.barba-left-leave-active {
+  transition: $short easeInOutCubic;
 }
 
 /* fade transition states */
@@ -14,30 +19,66 @@
 
 .barba-fade-enter,
 .barba-fade-leave-to {
+  transform: translateY(40px);
   opacity: 0;
 }
 
 /* slide transition states */
-.barba-slide-leave {
-  transform: translateY(0);
+.barba-right-leave {
+  transform: translateX(0);
   opacity: 1;
 
 }
-.barba-slide-enter-to {
-  transform: translateY(0);
+.barba-right-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+.barba-right-leave-to {
+  transform: translateY(40px);
+  opacity: 0;
+}
+.barba-right-enter {
+  transform: translateX(66vw);
+  opacity: 0;
+}
+
+.barba-left-leave {
+  transform: translateX(0);
+  opacity: 1;
+
+}
+.barba-left-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+.barba-left-leave-to {
+  transform: translateY(40px);
+  opacity: 0;
+}
+.barba-left-enter {
+  transform: translateX(-66vw);
+  opacity: 0;
+}
+
+
+/* .barba-back-leave {
+  transform: translateX(0);
+  opacity: 1;
+
+}
+.barba-back-enter-to {
+  transform: translateX(0);
   opacity: 1;
 }
 
-
-.barba-slide-leave-to {
-  transform: translateY(-100vh);
+.barba-back-leave-to {
+  transform: translateX(100vw);
   opacity: 0;
 }
-.barba-slide-enter {
-  transform: translateY(100vh);
+.barba-back-enter {
+  transform: translateX(-100vw);
   opacity: 0;
-}
-
+} */
 
 .barba-wipe {
   @apply fixed w-full h-screen inset-x-0 bg-white z-40;
@@ -56,3 +97,5 @@
     top: 100vh;
   }
 }
+
+/* purgecss end ignore */

@@ -3,11 +3,12 @@
   flex: 1 0 auto;
 }
 
-.blur-wrapper::after {
-  filter: blur(0px);
-  transition: filter $medium ease;
-
+.blur-wrapper {
+  & {
+    filter: none;
+    transition: filter $medium ease;
+  }
   &.active {
-  filter: blur(10px);
+    filter: blur(10px);
   }
 }

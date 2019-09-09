@@ -2,7 +2,7 @@ import anime from 'animejs'
 
 let swapperFrom = document.querySelector('.background-swapper > .from')
 let swapperTo = document.querySelector('.background-swapper > .to')
-let toggles = document.querySelectorAll('.toggle-background')
+let toggles = document.querySelectorAll('a[data-toggle-background]')
 let sources = document.querySelectorAll('.background-source')
 let backgrounds = []
 
@@ -19,7 +19,7 @@ if (toggles) {
       if (swapperTo.classList.contains('animating')) {
         return
       }
-      let index = toggle.getAttribute('data-index')
+      let index = toggle.getAttribute('data-toggle-background')
 
       swapperTo.classList.add('animating')
       swapperTo.style.backgroundImage = 'url(' + backgrounds[index] + ')'

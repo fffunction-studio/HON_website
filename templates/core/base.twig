@@ -18,8 +18,8 @@
       {% include "layout/header.twig" %}
     {% endblock %}
 
-    <div class="main-wrapper blur-wrapper z-10" data-barba="wrapper">
-      <main class="main" data-barba="container" data-barba-namespace="">
+    <div class="main-wrapper z-10" data-barba="wrapper">
+      <main class="main" data-barba="container" data-barba-namespace="{% if barbaNamespace is defined %}{{ barbaNamespace }}{% endif %}">
 
         {% block main %}{% endblock %}
 
