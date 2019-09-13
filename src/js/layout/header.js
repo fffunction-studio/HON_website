@@ -20,7 +20,7 @@ class Header extends CoreModule {
       )
 
       this.events.push(
-        new CoreEvent('barba-before-enter', () => {
+        new CoreEvent('barba-after-enter', () => {
           this.toggleBackButton()
         })
       )

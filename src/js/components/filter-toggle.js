@@ -7,7 +7,7 @@ class FilterToggle extends CoreModule {
     this.element = document.querySelector('.filter-toggle')
 
     if (this.element) {
-      this.element.addEventListener('click', this.onClick.bind(this))
+      this.element.addEventListener('click', this.onClick)
     }
     
     this.events.push(
@@ -23,12 +23,12 @@ class FilterToggle extends CoreModule {
 
   destroy() {
     if (this.element) {
-      this.element.removeEventListener('click', this.onClick.bind(this))
+      this.element.removeEventListener('click', this.onClick)
     }
   }
 
   onClick() {
-    if (!this.element.classList.contains('disabled')) {
+    if (!this.classList.contains('disabled')) {
       eventBus.$emit('toggle-filter-overlay')
     }
   }

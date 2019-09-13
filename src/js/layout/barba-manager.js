@@ -56,8 +56,7 @@ class BarbaManager extends CoreModule {
             name: 'barba-left',
             from: {
               custom: ({current, next, trigger}) => {
-                console.log(trigger, trigger == "popstate")
-                return trigger == "popstate"
+                return (trigger == "popstate") || (next.url.path == '/index') || (next.url.path == '/journal')
               },
             },
             

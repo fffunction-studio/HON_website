@@ -68,6 +68,10 @@
     &-extra {
       padding-top: 160px;
     }
+
+    &-no-ipad {
+      padding-top: $section-offset;
+    }
   }
 
   .header-main {
@@ -93,6 +97,14 @@
           }
         }
       } 
+    }
+  }
+}
+
+@screen lg {
+  .header-offset {
+    &-no-ipad {
+      padding-top: 120px;
     }
   }
 }

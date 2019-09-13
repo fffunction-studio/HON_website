@@ -10,7 +10,7 @@
     <div class="container">
 
       <div class="row justify-between">
-      
+
         <div class="col md:w-1/12 lg:w-3/12 xl:w-2/12 hidden md:block">
           <a onclick="history.back()" class="barba-back cursor-pointer pointer-events-auto">
             <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
@@ -26,24 +26,28 @@
     <div class="container">
 
       <div class="row">
-        <div class="col md:w-7/12 md:ml-5/12 lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+        <div class="col md:w-7/12 md:ml-5/12 lg:w-8/12 lg:ml-2/12">
 
-          {% for item in 1..4 %}
+          {% for item in articles %}
 
             <div class="w-full mb-20">
-              <div class="w-full bg-gray-500" style="padding-top: 66%"></div>
-              <div class="flex pt-4">
-                <div class="w-7/12">
-                  Radical fossils bowl at the exhibition time is now presented by baars &amp; bloemhoff. during dutch design week 2018. 
+
+              {% include "components/image.twig" with {
+                image : item.featuredImage.one(),
+                imageSize: 'landscape'
+              } %}
+
+              <div class="flex flex-wrap pt-4">
+                <div class="w-full lg:w-7/12">
+                  {{ item.featuredText }}
                 </div>
-                <div class="w-3/12 ml-2/12 opacity-25">
-                  broeinest ehv, eindhoven,<br>
-                  the netherlands.<br>
-                  20 - 28 oct. 2018
+                <div class="w-full lg:w-3/12 lg:ml-2/12 pt-4 lg:pt-0 opacity-25">
+                  {{ item.details }}
                 </div>
               </div>
-              <div>
-                <a class="border-b border-black" href="#">more info</a>
+
+              <div class="pt-4">
+                <a class="underline" href="{{ item.url }}">more info</a>
               </div>
             </div>
 

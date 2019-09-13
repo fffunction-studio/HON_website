@@ -5,14 +5,21 @@
 
       <div class="flex justify-between items-center" role="navigation">
         <div class="branding w-2/12 md:w-4/12">
-          <a onclick="history.back()" class="header-barba-back barba-back cursor-pointer md:hidden">
+          {% if barbaBackPath is defined %}
+            <a href="{{ currentSite.baseUrl ~ barbaBackPath }}" class="header-barba-back barba-back cursor-pointer md:hidden">
               <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow-small.svg" alt="">
-          </a>
+            </a>
+          {% else %}
+            <a onclick="history.back()" class="header-barba-back barba-back cursor-pointer md:hidden">
+              <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow-small.svg" alt="">
+            </a>
+          {% endif %}
+
           <a class="close-menu hidden md:inline" href="{{ siteUrl }}">
             <span class="font-medium md:text-lg lg:text-xl">studio hongjie yang</span>
           </a>
         </div>
-        
+
         <div class="blur-wrapper lg:hidden">
           <div class="filter-toggle mx-4 block disabled">filter</div>
         </div>
@@ -24,11 +31,10 @@
           </div>
         </div>
 
-
         <div class="hidden lg:block w-4/12 text-right">
-            <a class="close-menu" href="{{ siteUrl }}contact">
-              contact
-            </a>
+          <a class="close-menu" href="{{ siteUrl }}contact">
+            contact
+          </a>
         </div>
       </div>
 

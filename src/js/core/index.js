@@ -69,11 +69,12 @@ class Core {
   }
 
   createAnchors() {
-    console.log('TCL: createAnchors -> this.scenes', this.scenes)
     let scrollAnchors = document.querySelectorAll('.scroll-anchor')
     let scrollActions = {
       showFilterToggle: () => {
-        document.querySelector('.filter-toggle').classList.remove('disabled')
+        if (window.location.pathname.substr(0, 6) == '/index') {
+          document.querySelector('.filter-toggle').classList.remove('disabled')
+        }
       },
       hideFilterToggle: () => {
         document.querySelector('.filter-toggle').classList.add('disabled')
@@ -87,20 +88,17 @@ class Core {
       this.scenes.push(
         new CoreScrollScene(
           () => {
-            return Math.floor(offset(anchor).top + window.innerHeight / 2)
+            return Math.floor(offset(anchor).top)
           },
           () => {
-            console.log('show filter')
             scrollActions[actionDown]()
           },
           () => {
-            console.log('hide filter')
             scrollActions[actionUp]()
           },
           false
         )
       )
-      console.log('TCL: createAnchors -> this.scenes', this.scenes)
     })
   }
 

@@ -58,7 +58,7 @@
             </ul>
           </div>
 
-          <div class="col w-full md:w-6/12 lg:w-3/12 xl:w-2/12">
+          <div class="col hidden md:block md:w-6/12 lg:w-3/12 xl:w-2/12">
             <div class="row">
               <div class="col w-6/12 md:w-auto md:flex-grow">
                 <p class="filter-label md:text-right">Type</p>
@@ -83,7 +83,7 @@
 
     <div class="scroll-anchor w-full h-0" data-action-down="showFilterToggle" data-action-up="hideFilterToggle"></div>
 
-    <section class="section header-offset blur-wrapper z-10">
+    <section class="section header-offset-no-ipad blur-wrapper z-10">
       <div class="container">
         <div class="row">
           <div class="col w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">

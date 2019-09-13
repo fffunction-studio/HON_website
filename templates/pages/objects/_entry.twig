@@ -4,6 +4,8 @@
 
 {% set headerBarbaBack = "true" %}
 
+{% set barbaBackPath = "/index" %}
+
 {% block main %}
 
   <section class="header-offset-extra blur-wrapper relative md:fixed w-full top-0 left-0 z-10">
@@ -17,7 +19,7 @@
       </div> #}
       <div class="row">
         <div class="col w-1/12 lg:w-full pb-12 hidden md:block">
-          <a onclick="history.back()" class="barba-back cursor-pointer">
+          <a href="{{ currentSite.baseUrl }}/index" class="barba-back cursor-pointer">
             <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
           </a>
         </div>

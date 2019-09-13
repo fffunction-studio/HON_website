@@ -1,11 +1,67 @@
 {% extends "core/base.twig" %}
 
+{% set headerBarbaBack = "true" %}
+
+{% set barbaBackPath = "/journal" %}
+
 {% block main %}
 
-  <section class="section header-offset">
+  <section class="header-offset-extra blur-wrapper relative md:fixed w-full top-0 left-0 z-10">
+    <div class="container">
+      <div class="row">
+        <div class="col w-1/12 lg:w-full pb-12 hidden md:block">
+          <a href="{{ currentSite.baseUrl }}/journal" class="barba-back cursor-pointer">
+            <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+          </a>
+        </div>
+
+        <div class="col w-10/12 ml-1/12 md:w-4/12 md:ml-0 md:mr-7/12 lg:ml-0 lg:w-3/12 lg:mr-0">
+          <div class="py-8 md:pb-16 md:pt-0 lg:py-0 lg:flex lg:justify-end lg:ml-16">
+            <p>
+              {{ entry.featuredText }}
+            </p>
+          </div>
+        </div>
+        <div class="col w-10/12 ml-1/12 md:w-4/12 lg:ml-0 lg:w-3/12 lg:ml-6/12">
+          <div class="lg:flex lg:justify-start lg:ml-16">
+            <p class="opacity-25">
+              {{ entry.details|nl2br }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section blur-wrapper header-offset">
     <div class="container">
 
-      {{ entry.title }}
+      <div class="row">
+
+        <div class="w-full md:px-4 md:w-7/12 md:ml-5/12 lg:w-6/12 lg:mx-auto">
+
+          {% include "components/image.twig" with {
+            image : entry.featuredImage.one(),
+            imageSize: 'landscape'
+          } %}
+
+          <div class="mt-12 px-4 md:px-0">
+            <p>
+              {{ entry.description|nl2br }}
+            </p>
+          </div>
+
+          {% for item in entry.images.all() %}
+            <div class="my-12">
+              {% include "components/image.twig" with {
+                image: item
+              } %}
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
 
     </div>
   </section>
