@@ -1,5 +1,7 @@
 {% extends "core/base.twig" %}
 
+{% set headerBarbaBack = "true" %}
+
 {% block main %}
 
   <section class="section blur-wrapper header-offset fixed top-0 left-0 w-full">
@@ -7,10 +9,10 @@
 
       <div class="row justify-between">
 
-        <div class="col lg:w-3/12 xl:w-2/12">
-
-          <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
-
+        <div class="col md:w-1/12 lg:w-3/12 xl:w-2/12 hidden md:block">
+          <a onclick="history.back()" class="barba-back cursor-pointer pointer-events-auto">
+            <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+          </a>
         </div>
 
       </div>
@@ -22,15 +24,15 @@
     <div class="container">
 
       <div class="row">
-        <div class="col lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+        <div class="col md:w-7/12 md:ml-5/12 lg:w-6/12 lg:ml-3/12">
 
-          <p class="text-sm mb-4">Information</p>
+          <p class="text-sm mb-2">Information</p>
 
           <p class="mb-12">
             Hongjie Yang (CN, 1989), is a designer based in the Netherlands. He was educated both in the USA and at the Design Academy Eindhoven, the Netherlands, where he received his Master’s Degree in Contextual Design. Since then, he has focused his attention on creating works that examine where the distinctions in nature blur between intervention and non-intervention, as intervention itself starts to be seen as part of a natural process. The exploration of this idea lies at the heart of Yang’s work — metamorphosis, the process of altering form, a change in nature —that idea that, through transformation, we find enlightenment. Founded upon meticulous research, many of his works are central to this conceptual premise and embrace a new class of aesthetics, which seeks to transcend the divide between the powers of humanity and nature.
           </p>
 
-          <p class="text-sm mb-4">2019</p>
+          <p class="text-sm mb-2">2019</p>
           <ul class="mb-12 opacity-50">
             <li class="my-4">Rising Talents Awards / Maison & Objet, Spazio Rossana Orlandi, Salone del Mobile, Milan, Italy.</li>
             <li class="my-4">The Circles, Dutch Invertuals, Salone del Mobile, Milan, Italy.</li>
@@ -44,8 +46,8 @@
             <li class="my-4">Rising Talent Awards / Maison & Objet, Paris Nord Villepinte, Paris, France.</li>
           </ul>
 
-          <p class="text-sm mb-4">2018</p>
-          <ul class="mb-40 opacity-50">
+          <p class="text-sm mb-2">2018</p>
+          <ul class="mb-12 md:mb-24 opacity-50">
             <li class="my-4">Design Miami, Gallery All, Miami Beach, USA.</li>
             <li class="my-4">Timeisnow, Broeinest EHV, Eindhoven, the Netherlands.</li>
             <li class="my-4">Naked, Museum Kranenburgh, Bergen, the Netherlands.</li>

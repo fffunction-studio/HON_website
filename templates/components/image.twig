@@ -15,7 +15,14 @@
 {% endfor %}
 
 {# output srcset #}
-<img src="{{ siteUrl }}{{ image.url() }}" srcset="{{ srcset|join(', ') }}" sizes="50vw" alt="">
+<figure class="{% if imageSize is defined %}{{ imageSize }}{% else %}portrait{% endif %}">
+  <img src="{{ siteUrl }}{{ image.url() }}" srcset="{{ srcset|join(', ') }}" sizes="50vw" alt="">
+</figure>
+
 {% else %}
-<div class="block bg-red" style="padding-top: 100%"></div>
+
+<figure class="{% if imageSize is defined %}{{ imageSize }}{% else %}portrait{% endif %}">
+  <div class="block bg-red" style="padding-top: 100%"></div>
+</figure>
+
 {% endif %}

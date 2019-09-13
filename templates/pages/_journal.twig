@@ -1,5 +1,7 @@
 {% extends "core/base.twig" %}
 
+{% set headerBarbaBack = "true" %}
+
 {% block main %}
 
   {% set articles = craft.entries().section("journalArticles").all() %}
@@ -9,23 +11,11 @@
 
       <div class="row justify-between">
       
-        <div class="col lg:w-3/12 xl:w-2/12">
-
-          <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
-
+        <div class="col md:w-1/12 lg:w-3/12 xl:w-2/12 hidden md:block">
+          <a onclick="history.back()" class="barba-back cursor-pointer pointer-events-auto">
+            <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+          </a>
         </div>
-
-        <div class="col lg:w-3/12 xl:w-2/12">
-              <p class="text-sm text-right mb-4">Year</p>
-              <ul class="text-right">
-                <li>2019</li>
-                <li>2018</li>
-                <li>2017</li>
-                <li>2016</li>
-                <li>2015</li>
-                <li>2014</li>
-              </ul>
-            </div>
 
       </div>
 
@@ -36,7 +26,7 @@
     <div class="container">
 
       <div class="row">
-        <div class="col lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+        <div class="col md:w-7/12 md:ml-5/12 lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
 
           {% for item in 1..4 %}
 

@@ -1,0 +1,17 @@
+<svg width="33px" height="29px" viewBox="0 0 33 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="product_mobile_scroll" transform="translate(-17.000000, -22.000000)" stroke="#323232" stroke-width="0.8">
+            <g id="Group-3">
+                <g id="Group-5" transform="translate(17.000000, 22.000000)">
+                    <g id="Group-2">
+                        <g id="Group-4" transform="translate(7.983217, 14.247348) rotate(-90.000000) translate(-7.983217, -14.247348) translate(-6.016783, 6.997348)">
+                            <path d="M13.951049,0 L27.8330333,14.12763" id="Line-3"></path>
+                            <path d="M0,0 L13.8819844,14.12763" id="Line-3-Copy" transform="translate(6.975524, 7.098958) scale(-1, 1) translate(-6.975524, -7.098958) "></path>
+                        </g>
+                    </g>
+                    <path d="M32,14.255344 L0.8,14.255344" id="Line"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

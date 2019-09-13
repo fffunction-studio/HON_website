@@ -11,6 +11,8 @@
 
   {% set backgroundSources = [] %}
 
+  {% set placeholder = false %}
+
   {% for item in projectCategories %}
     {% set break = false %}
 
@@ -21,12 +23,19 @@
           title: entry.projectTitle.one().title
         }
       ]) %}
+      {% if not placeholder %}
+        {% set placeholder = entry.featuredImage.one().url("fw") %}
+      {% endif %}
+      
       {% set break = true %}
     {% endfor %}
 
   {% endfor %}
 
   <section class="min-h-screen blur-wrapper">
+    <div class="background-placeholder absolute inset-0" style="background-image: url({{ placeholder }})">
+    </div>
+
     <div class="background-swapper absolute inset-0">
       <div class="from"></div>
       <div class="to"></div>
@@ -39,12 +48,12 @@
     </div>
   </section>
 
-  <section class="section blur-wrapper header-offset fixed top-0 left-0 w-full">
+  <section class="section blur-wrapper header-offset-extra fixed top-0 left-0 w-full">
       <div class="container">
         <div class="row justify-between">
           
           <div class="col">
-            <p class="text-sm mb-4">Specimen</p>
+            <p class="text-sm mb-2">Specimen</p>
             <ul>
             <li>
               <a href="{{ siteUrl }}index">All</a>
@@ -76,7 +85,7 @@
     <div class="container">
       <div class="row mt-40">
         <div class="col">
-          <p class="text-sm mb-4">Specimen</p>
+          <p class="text-sm mb-2">Specimen</p>
           <ul>
             {% for item in projectCategories %}
               {% set counter = 0 %}

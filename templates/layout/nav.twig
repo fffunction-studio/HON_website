@@ -2,5 +2,27 @@
   <div class="flex justify-center">
     <p class="text-sm">Menu</p>
   </div>
-  {% include "components/nav-menu.twig" %}
+
+  {% set query = craft.entries().section("pages") %}
+
+  {% set entries = query.all() %}
+
+  <ul class="nav-menu">
+    <li class="nav-menu-item close-menu md:hidden">
+      <a href="{{ siteUrl }}">home</a>
+    </li>
+    <li class="nav-menu-item close-menu">
+      <a href="{{ siteUrl }}index">index</a>
+    </li>
+    <li class="nav-menu-item close-menu">
+      <a href="{{ siteUrl }}info">info</a>
+    </li>
+    <li class="nav-menu-item close-menu">
+      <a href="{{ siteUrl }}journal">journal</a>
+    </li>
+    <li class="nav-menu-item close-menu lg:hidden">
+      <a href="{{ siteUrl }}contact">contact</a>
+    </li>
+  </ul>
+  
 </nav>

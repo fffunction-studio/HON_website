@@ -1,13 +1,15 @@
 {% extends "core/base.twig" %}
 
+{% set headerBarbaBack = "true" %}
+
 {% block main %}
 
-    <section class="section blur-wrapper header-offset fixed top-0 left-0 w-full pointer-events-none z-20">
+    <section class="section blur-wrapper header-offset-extra fixed top-0 left-0 w-full pointer-events-none z-20">
       <div class="container">
 
         <div class="row justify-between">
 
-          <div class="col lg:w-3/12 xl:w-2/12">
+          <div class="col md:w-1/12 lg:w-3/12 xl:w-2/12 hidden md:block">
             <a onclick="history.back()" class="barba-back cursor-pointer pointer-events-auto">
               <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
             </a>
@@ -22,21 +24,21 @@
       <div class="container">
 
         <div class="row">
-          <div class="col lg:w-4/12 lg:ml-3/12 xl:w-4/12 xl:ml-2/12">
-            <p class="text-sm mb-4">contact</p>
-            <p class="text-xl">
+          <div class="col md:w-7/12 md:ml-5/12 lg:w-4/12 lg:ml-3/12 xl:w-4/12 xl:ml-2/12">
+            <p class="text-sm mb-2">contact</p>
+            <p class="text-xl mb-12 lg:mb-0">
               Studio Hongjie Yang<br>
               info@hongjieyang.nl<br>
               +31(0)629055611
             </p>
           </div>
-          <div class="col lg:w-4/12 xl:w-5/12">
-            <p class="text-sm mb-4">Working At</p>
+          <div class="col md:w-7/12 md:ml-5/12 lg:ml-0 lg:w-4/12 xl:w-5/12">
+            <p class="text-sm mb-2">Working At</p>
             <p class="mb-12">Internship available from August 2019.</p>
-            <p class="text-sm mb-4">Social</p>
+            <p class="text-sm mb-2">Social</p>
             <p class="mb-12">Instagram</p>
-            <p class="text-sm mb-4">Collectors services</p>
-            <p class="mb-40">We provide maintenance services to ensure the condition of your collections. (mirror finishing, patination, ect.), Please contact us for more information.</p>
+            <p class="text-sm mb-2">Collectors services</p>
+            <p class="mb-12 md:mb-24">We provide maintenance services to ensure the condition of your collections. (mirror finishing, patination, ect.), Please contact us for more information.</p>
             <p class="">
               Copyright © 2019 Studio Hongjie Yang. All rights reserved. Any unauthorised resale, distribution, public display or duplication of any image or idea is a violation of all applicable laws and is subject to prosecution.
             </p>

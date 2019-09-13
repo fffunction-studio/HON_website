@@ -2,20 +2,27 @@
 
 {% set barbaNamespace = "object" %}
 
+{% set headerBarbaBack = "true" %}
+
 {% block main %}
 
-  <section class="header-offset fixed w-full top-0 left-0 z-10">
+  <section class="header-offset-extra blur-wrapper relative md:fixed w-full top-0 left-0 z-10">
     <div class="container">
-      <div class="row pb-12">
-        <div class="col w-3/12">
+      {# <div class="row">
+        <div class="col w-3/12 pb-12 hidden lg:block">
           <a onclick="history.back()" class="barba-back cursor-pointer">
             <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
           </a>
         </div>
-      </div>
+      </div> #}
       <div class="row">
-        <div class="col w-3/12">
-          <div class="flex justify-end mr-16">
+        <div class="col w-1/12 lg:w-full pb-12 hidden md:block">
+          <a onclick="history.back()" class="barba-back cursor-pointer">
+            <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+          </a>
+        </div>
+        <div class="col w-10/12 ml-1/12 md:w-4/12 md:ml-0 md:mr-7/12 md:ml-0 lg:w-3/12 lg:mr-0">
+          <div class="py-8 md:pb-16 md:pt-0 lg:py-0 lg:flex lg:justify-end lg:mr-16">
             <ul>
               <li class="text-sm mb-2">
                 {{ entry.projectTitle.one().title }}
@@ -26,10 +33,10 @@
             </ul>
           </div>
         </div>
-        <div class="col w-3/12 ml-6/12">
-          <div class="flex justify-start ml-16">
+        <div class="col w-10/12 ml-1/12 md:w-4/12 lg:ml-0 lg:w-3/12 lg:ml-6/12">
+          <div class="lg:flex lg:justify-start lg:ml-16">
             <ul class="">
-              <li class="text-sm mb-4">Specifications</li>
+              <li class="text-sm mb-2">Specifications</li>
               <li class="opacity-25">{{ entry.category.one().title }}</li>
               <li class="opacity-25">{{ entry.material }}</li>
               <li class="opacity-25">{{ entry.referenceNumber }}</li>
@@ -42,19 +49,19 @@
     </div>
   </section>
 
-  <section class="section header-offset">
+  <section class="section blur-wrapper header-offset">
     <div class="container">
 
       <div class="row">
 
-        <div class="col w-6/12 mx-auto">
+        <div class="w-full md:px-4 md:w-7/12 md:ml-5/12 lg:w-6/12 lg:mx-auto">
 
           {% include "components/image.twig" with {
             image : entry.featuredImage.one()
           } %}
 
-          <div class="mt-12">
-            <p class="text-sm mb-4">Story</p>
+          <div class="mt-12 px-4 md:px-0">
+            <p class="text-sm mb-2">Story</p>
             <p>
               {{ entry.description|nl2br }}
             </p>

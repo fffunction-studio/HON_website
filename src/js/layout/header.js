@@ -4,6 +4,7 @@ import { CoreEvent } from '../core/core-event'
 class Header extends CoreModule {
   init(options) {
     this.element = options.element
+    this.toggleBackButton()
 
     if (this.element) {
       this.events.push(
@@ -17,11 +18,28 @@ class Header extends CoreModule {
           this.unpin()
         })
       )
+
+      this.events.push(
+        new CoreEvent('barba-before-enter', () => {
+          this.toggleBackButton()
+        })
+      )
     } else {
       return { id: this.id, status: false, message: 'no .header-main element' }
     }
 
     return super.init()
+  }
+
+  toggleBackButton() {
+    let main = document.querySelector('.main')
+    if (main.getAttribute('data-header-barba-back')) {
+      this.element
+        .querySelector('.header-barba-back')
+        .classList.add('active')
+    } else {
+      this.element.querySelector('.header-barba-back').classList.remove('active')
+    }
   }
 
   pin() {

@@ -28,7 +28,7 @@ if (toggles) {
       anime({
         targets: swapperTo,
         opacity: 1,
-        duration: 600,
+        duration: 200,
         easing: 'easeInOutExpo',
         complete: () => {
           swapperFrom.style.backgroundImage = 'url(' + backgrounds[index] + ')'

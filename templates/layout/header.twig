@@ -4,18 +4,28 @@
     {% block header %}
 
       <div class="flex justify-between items-center" role="navigation">
-        <div class="branding w-4/12">
-          <a class="close-menu" href="{{ siteUrl }}">
-            <span class="font-medium text-xl">Studio hongjie yang</span>
+        <div class="branding w-2/12 md:w-4/12">
+          <a onclick="history.back()" class="header-barba-back barba-back cursor-pointer md:hidden">
+              <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow-small.svg" alt="">
+          </a>
+          <a class="close-menu hidden md:inline" href="{{ siteUrl }}">
+            <span class="font-medium md:text-lg lg:text-xl">studio hongjie yang</span>
           </a>
         </div>
-
-        <div class="burger toggle-menu relative z-50">
-          <span></span>
-          <span></span>
+        
+        <div class="blur-wrapper lg:hidden">
+          <div class="filter-toggle mx-4 block disabled">filter</div>
         </div>
 
-        <div class="w-4/12 text-right">
+        <div class="w-2/12 md:w-4/12 flex justify-end lg:justify-center">
+          <div class="burger toggle-menu relative z-50">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+
+        <div class="hidden lg:block w-4/12 text-right">
             <a class="close-menu" href="{{ siteUrl }}contact">
               contact
             </a>

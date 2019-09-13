@@ -1,10 +1,11 @@
+/* purgecss start ignore */
 .nav-main {
   @apply fixed w-full h-screen flex flex-col text-black z-50 opacity-0;
   top: -100vh;
   left: 0;
   transition: opacity $long ease-in-out;
   background: rgba(255, 255, 255, 0.75);
-  /* backdrop-filter: blur(12px); */
+
   &.active {
     top: 0;
     opacity: 1;
@@ -13,3 +14,4 @@
     @apply ml-0 text-center;
   }
 }
+/* purgecss ignore ignore */

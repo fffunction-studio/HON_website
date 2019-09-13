@@ -24,6 +24,7 @@ class BarbaManager extends CoreModule {
             },
 
             beforeEnter() {
+              window.scrollTo(0, 0)
               document.body.classList.add('barba-enter')
               document.body.classList.remove('barba-leave')
 
@@ -40,8 +41,6 @@ class BarbaManager extends CoreModule {
                     console.log(error)
                   })
               })
-
-              window.scrollTo(0, 0)
 
               eventBus.$emit('barba-before-enter')
             },

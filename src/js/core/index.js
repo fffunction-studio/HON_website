@@ -1,5 +1,6 @@
 import debounce from 'lodash/debounce'
 import shortid from 'shortid'
+import offset from 'document-offset'
 //
 import { CoreScrollScene } from './core-scroll-scene'
 import { config } from './config'
@@ -21,6 +22,7 @@ class Core {
       }
     })
 
+    this.createAnchors()
     this.createScenes()
 
     eventBus.$on('barba-after-enter', () => {
@@ -31,17 +33,18 @@ class Core {
         }
       })
 
-      this.scenes.forEach((scene) => {
-        if (scene.reinit) {
-          scene.destroy()
-          scene.init()
-        }
-      })
+      this.scenes = []
+
+      this.createAnchors()
+      this.createScenes()
     })
 
-    window.addEventListener('resize', throttle((event) => {
-      eventBus.$emit('window-resized', event)
-    }, 250))
+    window.addEventListener(
+      'resize',
+      throttle((event) => {
+        eventBus.$emit('window-resized', event)
+      }, 250)
+    )
   }
 
   attach(module, options = {}, reinit = false) {
@@ -63,6 +66,42 @@ class Core {
         }
       })
     }
+  }
+
+  createAnchors() {
+    console.log('TCL: createAnchors -> this.scenes', this.scenes)
+    let scrollAnchors = document.querySelectorAll('.scroll-anchor')
+    let scrollActions = {
+      showFilterToggle: () => {
+        document.querySelector('.filter-toggle').classList.remove('disabled')
+      },
+      hideFilterToggle: () => {
+        document.querySelector('.filter-toggle').classList.add('disabled')
+        document.querySelector('.filter-overlay').classList.remove('active')
+      }
+    }
+
+    scrollAnchors.forEach((anchor) => {
+      let actionDown = anchor.getAttribute('data-action-down')
+      let actionUp = anchor.getAttribute('data-action-up')
+      this.scenes.push(
+        new CoreScrollScene(
+          () => {
+            return Math.floor(offset(anchor).top + window.innerHeight / 2)
+          },
+          () => {
+            console.log('show filter')
+            scrollActions[actionDown]()
+          },
+          () => {
+            console.log('hide filter')
+            scrollActions[actionUp]()
+          },
+          false
+        )
+      )
+      console.log('TCL: createAnchors -> this.scenes', this.scenes)
+    })
   }
 
   createScenes() {

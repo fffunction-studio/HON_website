@@ -19,6 +19,13 @@ class Nav extends CoreModule {
       closer.addEventListener('click', this.onClose)
     })
 
+
+    this.events.push(
+      new CoreEvent('barba-before-enter', () => {
+        this.removeBlur()
+      })
+    )
+
     return super.init()
   }
 
@@ -31,6 +38,12 @@ class Nav extends CoreModule {
 
     this.closers.forEach((closer) => {
       closer.removeEventListener('click', this.onClose)
+    })
+  }
+
+  removeBlur() {
+    this.blurryContent.forEach(blur => {
+      blur.classList.remove('active')
     })
   }
 
