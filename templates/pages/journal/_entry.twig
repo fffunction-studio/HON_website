@@ -38,12 +38,11 @@
     <div class="container">
 
       <div class="row">
-
+      
         <div class="w-full md:px-4 md:w-7/12 md:ml-5/12 lg:w-6/12 lg:mx-auto">
 
           {% include "components/image.twig" with {
-            image : entry.featuredImage.one(),
-            imageSize: 'landscape'
+            image : entry.journalFeaturedImage.one(),
           } %}
 
           <div class="mt-12 px-4 md:px-0">
@@ -52,7 +51,7 @@
             </p>
           </div>
 
-          {% for item in entry.images.all() %}
+          {% for item in entry.journalImages.all() %}
             <div class="my-12">
               {% include "components/image.twig" with {
                 image: item
