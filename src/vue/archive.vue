@@ -285,7 +285,7 @@ export default {
       if (window.location.hostname == 'localhost') {
         return 'http://localhost:8080'
       }
-      return 'https://fffunction.studio/hongjie'
+      return 'http://hongjieyang.com'
     }
   }
 }

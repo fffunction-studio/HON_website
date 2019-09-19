@@ -39,11 +39,23 @@
           <div class="lg:flex lg:justify-start lg:ml-16">
             <ul class="">
               <li class="text-sm mb-2">Specifications</li>
-              <li class="opacity-25">{{ entry.category.one().title }}</li>
+              <li class="opacity-25">
+                {{ entry.category.one().title }}
+                {% if entry.categoryDetails != "" %}
+                  {{ entry.categoryDetails }}
+                {% endif %}
+              </li>
               <li class="opacity-25">{{ entry.material }}</li>
+              <li class="opacity-25">{{ entry.dimensions[0].height }}cm *
+                {{ entry.dimensions[0].width }}cm *
+                {{ entry.dimensions[0].depth }}cm</li>
+              {# <li class="opacity-25">{{ dump(entry.dimensions[0].height) }}</li> #}
               <li class="opacity-25">{{ entry.referenceNumber }}</li>
               <li class="opacity-25">Edition
                 {{ entry.edition[0].title }}</li>
+              <li class="mt-8 underline">
+                <a href="mailto:info@hongjieyang.nl">inquiry</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -72,7 +84,7 @@
           {% for item in entry.images.all() %}
             <div class="my-12">
               {% include "components/image.twig" with {
-                image: item
+                image : item
               } %}
             </div>
           {% endfor %}

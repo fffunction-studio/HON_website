@@ -17,14 +17,19 @@
     {% set break = false %}
 
     {% for entry in objects if entry.projectTitle.one().title == item.title and not break %}
+      {% set imageSource = entry.featuredImage.one() %}
+      {% if entry.landingImage.one() %}
+        {% set imageSource = entry.landingImage.one() %} 
+      {% endif %}
+      
       {% set backgroundSources = backgroundSources | merge([
         {
-          src: entry.featuredImage.one().url("fw"),
+          src: imageSource.url("fw"),
           title: entry.projectTitle.one().title
         }
       ]) %}
       {% if not placeholder %}
-        {% set placeholder = entry.featuredImage.one().url("fw") %}
+        {% set placeholder = imageSource.url("fw") %}
       {% endif %}
       
       {% set break = true %}
