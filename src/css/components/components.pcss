@@ -50,8 +50,7 @@ table {
 }
 
 .list-leave-to{
-	transform: translateY(30px);
-  transform: scale(0.66);
+	transform: scale(0.66) translateY(30px);
 	opacity:0;
 }
 
@@ -61,12 +60,27 @@ table {
 }
 
 .list-item {
-	transition: all $short ease-in-out;
+	transition: all $medium ease-in-out;
 }
 
-
+@screen lg {
+  .loose {
+    .home-list {
+      .list-item {
+        &:nth-child(odd) {
+          margin-top: calc(75% - 96px);
+        }
+        &.col {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+      }
+    }
+  }
+}
 
 /*  */
+
 .filter {
   &-toggle {
     transition: $medium ease;
@@ -156,6 +170,12 @@ table {
 
 @screen lg {
   .filter {
+    &-container {
+      transition: $medium ease;
+      &.opacity {
+        opacity: 0;
+      }
+    }
     &-label {
       @apply text-xs mb-4;
     }

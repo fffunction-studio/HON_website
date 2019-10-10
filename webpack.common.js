@@ -97,6 +97,7 @@ module.exports = {
     main: './src/index.js',
     landing: './src/landing.js',
     archive: './src/archive.js',
+    home: './src/home.js',
   },
 
   output: {

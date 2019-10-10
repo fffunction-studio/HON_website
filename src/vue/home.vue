@@ -1,5 +1,7 @@
 <template>
   <div id="archive-app">
+    <div @click="onClick" class="hidden lg:block click-to-snap fixed w-full h-screen z-50" v-if="!isSnapped"></div>
+
     <section class="section filter-overlay header-offset fixed top-0 lg:hidden w-full pointer-events-none z-30 bg-white">
       <div class="container blur-wrapper">
         <div class="row justify-between">
@@ -35,6 +37,7 @@
                   <li v-bind:key="index" v-for="(edition, index) in editions" v-on:click="toggleFilter('edition', edition.slug)">{{ edition.title }}</li>
                 </ul>
               </div>
+
             </div>
           </div>
         </div>
@@ -42,7 +45,7 @@
     </section>
 
     <section class="section filter blur-wrapper header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
-      <div class="container">
+      <div class="container filter-container" :class="{ opacity: !isSnapped }">
         <div class="row justify-between">
           <div class="col w-full md:w-6/12 lg:w-3/12">
             <p class="filter-label">Specimen</p>
@@ -83,10 +86,10 @@
 
     <div class="scroll-anchor w-full h-0" data-action-down="showFilterToggle" data-action-up="hideFilterToggle"></div>
 
-    <section class="section header-offset-no-ipad blur-wrapper z-10">
+    <section :class="{ loose: !isSnapped }" class="section header-offset-no-ipad blur-wrapper z-10">
       <div class="container">
         <div class="row">
-          <div class="col w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+          <div class="col home-list w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
             <transition-group class="list row flex-wrap" name="list">
               <div class="list-item col w-full md:w-6/12 mb-12" v-bind:key="index" v-for="(object, index) in objects" v-if="isVisible(object)">
                 <a :href="object.url">
@@ -117,6 +120,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      isSnapped: false,
       objects: [],
       categories: [],
       projects: [],
@@ -188,6 +192,8 @@ export default {
 
     let filters = []
 
+    window.addEventListener('scroll', this.onScroll)
+
     currentUrl.forEach((filter) => {
       let split = filter.split('=')
       if (split.length == 2) {
@@ -203,6 +209,13 @@ export default {
     })
   },
   methods: {
+    onClick() {
+      this.isSnapped = true;
+    },
+    onScroll() {
+      console.log('scrolled!')
+      window.removeEventListener('scroll', this.onScroll)
+    },
     countObjects(project) {
       return this.objects.filter((object) => object.project.title == project.title).length
     },
@@ -285,7 +298,6 @@ export default {
       if (window.location.hostname == 'localhost') {
         return 'http://localhost:8080'
       }
-      // return 'http://hongjieyang.com'
       return 'https://fffunction.studio/hongjie/public'
     }
   }

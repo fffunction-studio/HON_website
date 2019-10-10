@@ -1,6 +1,6 @@
 {% set footerWidget = craft.entries().section("widgets").slug("footer").one() %}
 
-<div id="footer" class="footer-wrapper blur-wrapper relative z-40">
+<div id="footer" class="footer-wrapper blur-wrapper relative z-40 text-sm ">
 
   <footer class="section footer-main">
     <div class="container">
@@ -11,27 +11,23 @@
       {% if footerWidget is defined %}
           <div class="row">
             <div class="col w-full mb-10 md:w-6/12 lg:w-2/12 lg:mr-1/12 lg:mb-0">
-              <p class="text-sm">Address</p>
               <p>{{ footerWidget.address|nl2br }}</p>
             </div>
             <div class="col w-full mb-10 md:w-6/12 lg:w-2/12 lg:mr-1/12 lg:mb-0">
-              <p class="text-sm">Working at</p>
               <p>{{ footerWidget.workingAt|nl2br }}</p>
             </div>
             <div class="col w-full mb-10 md:w-6/12 lg:w-2/12 lg:mr-1/12 lg:mb-0">
-              <p class="text-sm">Services</p>
               <p>{{ footerWidget.services|nl2br }}</p>
             </div>
             <div class="col w-full mb-10 md:w-6/12 lg:w-2/12 lg:mr-1/12 lg:mb-0">
-              <p class="text-sm">Social</p>
               <p>{{ footerWidget.social|nl2br }}</p>
             </div>
           </div>
       {% endif %}
 
-<div class="block lg:flex lg:justify-between text-sm mt-10 lg:mt-40">
-  <div>Copyright &copy; 2019 studio hongjie yang.</div>
-  <div>website designed and build by fffunction.studio</div>
+<div class="block lg:flex justify-between mt-10 lg:mt-16 opacity-50">
+  <p>Copyright &copy; 2019 studio hongjie yang.</p>
+  <p>website designed and built by <a target="_blank" href="https://fffunction.studio">fffunction.studio</a></p>
 </div>
 
 
