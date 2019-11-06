@@ -1,6 +1,6 @@
 <nav class="nav-main text-3xl lg:text-base z-40 pt-40">
   <div class="flex justify-center">
-    <p class="text-sm">Menu</p>
+    {# <p class="text-sm">Menu</p> #}
   </div>
 
   {% set query = craft.entries().section("pages") %}
@@ -8,19 +8,19 @@
   {% set entries = query.all() %}
 
   <ul class="nav-menu">
-    <li class="nav-menu-item close-menu md:hidden">
+    <li class="nav-menu-item close-menu my-2 md:my-4 text-xl md:text-2xl lg:text-3xl md:hidden">
       <a href="{{ siteUrl }}">home</a>
     </li>
-    <li class="nav-menu-item close-menu">
+    <li class="nav-menu-item close-menu my-2 md:my-4 text-xl md:text-2xl lg:text-3xl">
       <a href="{{ siteUrl }}index">index</a>
     </li>
-    <li class="nav-menu-item close-menu">
+    <li class="nav-menu-item close-menu my-2 md:my-4 text-xl md:text-2xl lg:text-3xl">
       <a href="{{ siteUrl }}info">info</a>
     </li>
-    <li class="nav-menu-item close-menu">
+    <li class="nav-menu-item close-menu my-2 md:my-4 text-xl md:text-2xl lg:text-3xl">
       <a href="{{ siteUrl }}journal">journal</a>
     </li>
-    <li class="nav-menu-item close-menu lg:hidden">
+    <li class="nav-menu-item close-menu my-2 md:my-4 text-xl md:text-2xl lg:text-3xl lg:hidden">
       <a href="{{ siteUrl }}contact">contact</a>
     </li>
   </ul>

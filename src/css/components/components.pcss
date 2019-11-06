@@ -42,8 +42,17 @@ table {
 /*  */
 .list {
   position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms ease, transform 400ms ease;
+
+  &.fade {
+    opacity: 0;
+    transform: translateY(40px);
+  }
 }
 
+/*
 .list-enter {
 	transform: scale(0.66) translateY(50px);
 	opacity:0;
@@ -58,9 +67,12 @@ table {
 	position: absolute;
 	z-index:-1;
 }
+*/
 
-.list-item {
-	transition: all $medium ease-in-out;
+.list.full-transitions {
+  .list-item {
+	  transition: all $medium ease-in-out;
+  }
 }
 
 @screen lg {
@@ -117,9 +129,16 @@ table {
   &-list {
     @apply text-base mb-6;
     cursor: pointer;
+
+    li {
+      @apply my-2;
+      &.active:not(:first-child) {
+        text-decoration: line-through;
+      }
+    }
   }
 
-  &-left {
+  /* &-left {
       li.active::after {
         @apply absolute border-black border-b;
         width: 1.25rem;
@@ -137,7 +156,7 @@ table {
         height: 0.8rem;
         margin-left: 0.3rem;
       }
-  }
+  } */
 }
 
 @screen md {
@@ -153,7 +172,7 @@ table {
       @apply mb-0;
     }
 
-    &-right {
+    /* &-right {
       li.active::after {
         @apply hidden;
       }
@@ -164,7 +183,7 @@ table {
         height: 0.8rem;
         margin-left: -1.7rem;
       }
-    }
+    } */
   }
 }
 
@@ -182,6 +201,13 @@ table {
 
     &-list {
       @apply text-sm mb-0;
+
+      li {
+        @apply my-4;
+        &:first-child {
+          @apply mt-6;
+        }
+      }
     }
   }
 }

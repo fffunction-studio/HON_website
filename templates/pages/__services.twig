@@ -1,0 +1,25 @@
+{% extends "core/base.twig" %}
+
+{% block main %}
+
+  {% set services = entry.services.all() %}
+
+  <section class="section header-offset">
+    <div class="container">
+      <div class="row">
+        <div class="col w-6/12">
+          <p class="text-sm font-normal lowercase mb-12">
+            services
+          </p>
+
+          {% for service in services %}
+            <p>{{ service.header }}</p>
+            {{ service.body|raw }}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

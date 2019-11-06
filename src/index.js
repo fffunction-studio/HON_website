@@ -9,7 +9,8 @@ import { images, filterToggle } from './js/components'
 ;(function() {
   document.body.style.zoom = screen.logicalXDPI / screen.deviceXDPI;
 
-  core.attach(header, { element: document.querySelector('.header-main') })
+  core.attach(header, { element: document.querySelector('.header-main')}, true)
+  // core.attach(footer, { element: document.querySelector('.footer-main')}, true)
   core.attach(nav, { element: document.querySelector('.nav-main') }, true)
   core.attach(barbaManager)
 

@@ -44,7 +44,11 @@
       </div>
     </section>
 
-    <section class="section filter blur-wrapper header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
+    <section class="section px-4 lg:hidden">
+      <img src="/dest/images/logo.svg" alt="">
+    </section>
+
+    <section class="section filter blur-wrapper hidden lg:block header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
       <div class="container filter-container" :class="{ opacity: !isSnapped }">
         <div class="row justify-between">
           <div class="col w-full md:w-6/12 lg:w-3/12">
@@ -90,13 +94,13 @@
       <div class="container">
         <div class="row">
           <div class="col home-list w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
-            <transition-group class="list row flex-wrap" name="list">
+            <transition-group class="list row flex-wrap" :class="{'fade': listFade, 'full-transitions': listTransition}" name="list">
               <div class="list-item col w-full md:w-6/12 mb-12" v-bind:key="index" v-for="(object, index) in objects" v-if="isVisible(object)">
                 <a :href="object.url">
                   <figure class="w-full portrait">
                     <img :src="baseUrl + '/' + object.featuredImage.url" alt />
                   </figure>
-                  <div class="flex justify-between mt-2">
+                  <div class="flex justify-between mt-4">
                     <div>{{ object.edition }}</div>
                     <div class="text-right">
                       {{ object.project.title }}
@@ -121,6 +125,8 @@ export default {
   data() {
     return {
       isSnapped: false,
+      listFade: false,
+      listTransition: true,
       objects: [],
       categories: [],
       projects: [],
@@ -210,11 +216,18 @@ export default {
   },
   methods: {
     onClick() {
-      this.isSnapped = true;
+      this.snap()
     },
     onScroll() {
       console.log('scrolled!')
+      this.snap()
       window.removeEventListener('scroll', this.onScroll)
+    },
+    snap() {
+      this.isSnapped = true;
+      setTimeout(() => {
+        this.listTransition = false
+      }, 600)
     },
     countObjects(project) {
       return this.objects.filter((object) => object.project.title == project.title).length
@@ -235,7 +248,10 @@ export default {
       return isVisible
     },
     toggleFilter(type, filter, element) {
-      switch (type) {
+      this.listFade = true;
+      
+      setTimeout(() => {
+        switch (type) {
         case 'project':
           if (this.filters.project != filter) {
             this.filters.project = filter
@@ -257,21 +273,33 @@ export default {
             this.filters.edition = ''
           }
           break
-      }
+        }   
+        setTimeout(() => {
+          this.listFade = false;
+        }, 100)
+      }, 400)
     },
     removeFilter(type) {
-      switch (type) {
-        case 'project':
-          this.filters.project = ''
-          break
-        case 'category':
-          this.filters.category = ''
-          break
-        case 'edition':
-          this.filters.edition = ''
-          break
-      }
+      this.listFade = true;
+
+      setTimeout(() => {
+        switch (type) {
+          case 'project':
+            this.filters.project = ''
+            break
+          case 'category':
+            this.filters.category = ''
+            break
+          case 'edition':
+            this.filters.edition = ''
+            break
+        }
+        setTimeout(() => {
+          this.listFade = false;
+        }, 100)
+      }, 400)
     },
+
     isActiveFilter(type, filter) {
       switch (type) {
         case 'project':
@@ -295,10 +323,14 @@ export default {
   },
   computed: {
     baseUrl() {
-      if (window.location.hostname == 'localhost') {
-        return 'http://localhost:8080'
-      }
-      return 'https://fffunction.studio/hongjie/public'
+      return  window.location.protocol + '//' + window.location.host
+
+      // if (window.location.hostname == 'localhost') {
+      //   return 'http://localhost:' + window.location.port
+      // } else if (window.location.hostname == '192.168.178.21') {
+      //   return '192.168.178.21:3000'
+      // }
+      // return 'https://fffunction.studio/hongjie/public'
     }
   }
 }

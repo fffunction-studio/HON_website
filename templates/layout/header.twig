@@ -6,13 +6,17 @@
       <div class="flex justify-between items-center" role="navigation">
         <div class="branding w-2/12 md:w-4/12">
           {% if barbaBackPath is defined %}
-            <a href="{{ currentSite.baseUrl ~ barbaBackPath }}" class="header-barba-back barba-back cursor-pointer md:hidden">
+
+            <a href="{{ currentSite.baseUrl ~ barbaBackPath }}" class="header-barba-back barba-back cursor-pointer md:hidden" data-barba-back="">
               <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow-small.svg" alt="">
             </a>
+
           {% else %}
-            <a onclick="history.back()" class="header-barba-back barba-back cursor-pointer md:hidden">
+
+            <a onclick="history.back()" class="header-barba-back barba-back cursor-pointer md:hidden" data-barba-back="">
               <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow-small.svg" alt="">
             </a>
+
           {% endif %}
 
           <a class="close-menu hidden md:inline" href="{{ siteUrl }}">

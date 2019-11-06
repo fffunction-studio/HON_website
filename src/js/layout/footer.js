@@ -1,22 +1,40 @@
 import { CoreModule } from '../core/core-module'
+import { CoreEvent } from '../core/core-event'
 
 class Footer extends CoreModule {
   init() {
-    this.toggles = document.querySelectorAll('.toggle-footer')
+    this.element = document.querySelector('.footer-main')
+    this.blurryContent = document.querySelectorAll('.blur-wrapper')
 
-    this.toggles.forEach(toggle => {
-      toggle.addEventListener('click', this.onToggle)
-    })
+    this.events.push(
+      new CoreEvent('scrolled-to-bottom', () => {
+        this.addBlur()
+      })
+    )
+
+    this.events.push(
+      new CoreEvent('scrolled-from-bottom', () => {
+        this.removeBlur()
+      })
+    )
 
     return super.init()
   }
 
+  addBlur() {
+    this.blurryContent.forEach(blur => {
+      blur.classList.add('active')
+    })
+  }
+
+  removeBlur() {
+    this.blurryContent.forEach(blur => {
+      blur.classList.remove('active')
+    })
+  }
+
   destroy() {
     super.destroy()
-
-    this.toggles.forEach(toggle => {
-      toggle.removeEventListener('click', this.onToggle)
-    })
   }
 
   onToggle() {

@@ -35,8 +35,10 @@ class Core {
 
       this.scenes = []
 
-      this.createAnchors()
-      this.createScenes()
+      setTimeout(() => {
+        this.createAnchors()
+        this.createScenes()
+      }, 1000)
     })
 
     window.addEventListener(
@@ -121,7 +123,7 @@ class Core {
     this.scenes.push(
       new CoreScrollScene(
         () => {
-          return document.body.clientHeight - window.innerHeight
+          return document.body.clientHeight - window.innerHeight + 40
         },
         (event) => {
           eventBus.$emit('scrolled-to-bottom')

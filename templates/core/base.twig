@@ -19,7 +19,7 @@
     {% endblock %}
 
     <div class="main-wrapper z-10" data-barba="wrapper">
-      <main class="main" data-barba="container" {% if headerBarbaBack is defined %}data-header-barba-back="{{ headerBarbaBack }}"{% endif %} data-barba-namespace="{% if barbaNamespace is defined %}{{ barbaNamespace }}{% endif %}">
+      <main class="main" data-barba="container" {% if headerBarbaBack is defined and barbaBackPath is defined %}data-header-barba-back="{{ headerBarbaBack }}" data-header-barba-back-path="{{ currentSite.baseUrl ~ barbaBackPath }}"{% endif %} data-barba-namespace="{% if barbaNamespace is defined %}{{ barbaNamespace }}{% endif %}">
 
         {% block main %}{% endblock %}
 

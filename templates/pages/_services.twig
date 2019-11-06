@@ -1,0 +1,40 @@
+{% extends "core/base.twig" %}
+
+{% set headerBarbaBack = "true" %}
+
+{% block main %}
+
+  <section class="section blur-wrapper header-offset fixed top-0 left-0 w-full">
+    <div class="container">
+
+      <div class="row justify-between">
+
+        <div class="col md:w-1/12 lg:w-3/12 xl:w-2/12 hidden md:block">
+          <a onclick="history.back()" class="barba-back cursor-pointer pointer-events-auto">
+            <img src="{{ currentSite.baseUrl }}/dest/images/back-arrow.svg" alt="">
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section blur-wrapper relative header-offset pointer-events-none">
+    <div class="container">
+
+      <div class="row">
+        <div class="col md:w-7/12 md:ml-5/12 lg:w-6/12 lg:ml-3/12">
+          {% for service in entry.services.all() %}
+            <div class="mb-12">
+              <p class="text-sm">{{ service.header }}</p>
+              {{ service.body|raw }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+{% endblock %}

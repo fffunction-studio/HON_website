@@ -3,7 +3,7 @@ import { CoreEvent } from '../core/core-event'
 
 class Header extends CoreModule {
   init(options) {
-    this.element = options.element
+    this.element = document.querySelector('.header-main')
     this.toggleBackButton()
 
     if (this.element) {
@@ -34,9 +34,19 @@ class Header extends CoreModule {
   toggleBackButton() {
     let main = document.querySelector('.main')
     if (main.getAttribute('data-header-barba-back')) {
-      this.element
-        .querySelector('.header-barba-back')
-        .classList.add('active')
+      let barbaBack = this.element.querySelector('.header-barba-back')
+      barbaBack.classList.add('active')
+
+      let target = document.querySelector('.main').getAttribute('data-header-barba-back-path')
+
+      if (target == false || target == "" || target == null) {
+        barbaBack.setAttribute('href', '')
+        barbaBack.setAttribute('onclick', 'history.back()')
+      } else {
+        barbaBack.setAttribute('href', target)
+        barbaBack.setAttribute('onclick', '')
+      }
+
     } else {
       this.element.querySelector('.header-barba-back').classList.remove('active')
     }

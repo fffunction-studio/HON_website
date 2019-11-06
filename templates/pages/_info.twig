@@ -20,7 +20,7 @@
     </div>
   </section>
 
-  <section class="section blur-wrapper relative header-offset">
+  <section class="section blur-wrapper relative header-offset pointer-events-none">
     <div class="container">
 
       <div class="row">
@@ -28,32 +28,35 @@
 
           <p class="text-sm mb-2">Information</p>
 
-          <p class="mb-12">
-            Hongjie Yang (CN, 1989), is a designer based in the Netherlands. He was educated both in the USA and at the Design Academy Eindhoven, the Netherlands, where he received his Master’s Degree in Contextual Design. Since then, he has focused his attention on creating works that examine where the distinctions in nature blur between intervention and non-intervention, as intervention itself starts to be seen as part of a natural process. The exploration of this idea lies at the heart of Yang’s work — metamorphosis, the process of altering form, a change in nature —that idea that, through transformation, we find enlightenment. Founded upon meticulous research, many of his works are central to this conceptual premise and embrace a new class of aesthetics, which seeks to transcend the divide between the powers of humanity and nature.
-          </p>
+          <div class="mb-12">
+            {{ entry.information }}
+          </div>
+{# 
+          <p class="text-sm mb-2">2020</p>
+          <ul class="mb-12 opacity-50">
+            {% for event in entry.events %}
+              {% if event.year == 2020 %}
+              <li class="my-4">{{ event.description }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul> #}
 
           <p class="text-sm mb-2">2019</p>
           <ul class="mb-12 opacity-50">
-            <li class="my-4">Rising Talents Awards / Maison & Objet, Spazio Rossana Orlandi, Salone del Mobile, Milan, Italy.</li>
-            <li class="my-4">The Circles, Dutch Invertuals, Salone del Mobile, Milan, Italy.</li>
-            <li class="my-4">Design Advisory & Architects Lounge, Collectible, Brussels, Belgium.</li>
-            <li class="my-4">Talk, Forum Vertigo, Designing the Living, Centre Pompidou, Paris, France.</li>
-            <li class="my-4">Talk, Design Marabout n°7, Centre Pompidou, Paris, France.</li>
-            <li class="my-4">La Fabrique du Vivant, Centre Pompidou, Paris, France.</li>
-            <li class="my-4">Art Palm Springs, Gallery All, Palm Springs Convention Center, Palm Springs, USA</li>
-            <li class="my-4">Metropolitan Sets by Mattia Biagi, The Badd House, West Hollywood, Los Angeles, USA.</li>
-            <li class="my-4">LA Art Show, Gallery All, LA Convention Center, Los Angeles, USA.</li>
-            <li class="my-4">Rising Talent Awards / Maison & Objet, Paris Nord Villepinte, Paris, France.</li>
+            {% for event in entry.events %}
+              {% if event.year == 2019 %}
+              <li class="my-4">{{ event.description }}</li>
+              {% endif %}
+            {% endfor %}
           </ul>
 
           <p class="text-sm mb-2">2018</p>
-          <ul class="mb-12 md:mb-24 opacity-50">
-            <li class="my-4">Design Miami, Gallery All, Miami Beach, USA.</li>
-            <li class="my-4">Timeisnow, Broeinest EHV, Eindhoven, the Netherlands.</li>
-            <li class="my-4">Naked, Museum Kranenburgh, Bergen, the Netherlands.</li>
-            <li class="my-4">Design Miami/Basel, Gallery All, Basel, Switzerland.</li>
-            <li class="my-4">JingArt, Gallery All, Beijing, China.</li>
-            <li class="my-4">Supernova, curated by Annalisa Rosso, Miart, Milan, Italy</li>
+          <ul class="mb-12 opacity-50">
+            {% for event in entry.events %}
+              {% if event.year == 2018 %}
+              <li class="my-4">{{ event.description }}</li>
+              {% endif %}
+            {% endfor %}
           </ul>
 
           <p class="w-8/12">
