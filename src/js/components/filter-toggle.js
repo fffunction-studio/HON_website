@@ -17,6 +17,22 @@ class FilterToggle extends CoreModule {
         }
       })
     )
+    
+    this.events.push(
+      new CoreEvent('scrolled-from-top', () => {
+        if (document.querySelector('.filter-toggle')) {
+          document.querySelector('.filter-toggle').classList.remove('disabled')
+        }
+      })
+    )
+    
+    this.events.push(
+      new CoreEvent('scrolled-to-top', () => {
+        if (document.querySelector('.filter-toggle')) {
+          document.querySelector('.filter-toggle').classList.add('disabled')
+        }
+      })
+    )
 
     return super.init()
   }

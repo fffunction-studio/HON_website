@@ -4,7 +4,7 @@
     {% block header %}
 
       <div class="flex justify-between items-center" role="navigation">
-        <div class="branding w-2/12 md:w-4/12">
+        <div class="branding w-6/12 h-4 relative md:w-4/12">
           {% if barbaBackPath is defined %}
 
             <a href="{{ currentSite.baseUrl ~ barbaBackPath }}" class="header-barba-back barba-back cursor-pointer md:hidden" data-barba-back="">
@@ -19,16 +19,18 @@
 
           {% endif %}
 
-          <a class="close-menu hidden md:inline" href="{{ siteUrl }}">
-            <img class="w-auto h-4" src="{{ siteUrl }}/dest/images/logo.svg" alt="">
-          </a>
+          <div class="pr absolute inset-0">
+            <a class="close-menu inline md:inline" href="{{ siteUrl }}">
+              <img class="w-auto h-4" src="{{ currentSite.baseUrl }}/dest/images/logo.svg" alt="">
+            </a>
+          </div>
         </div>
 
-        <div class="blur-wrapper lg:hidden">
-          <div class="filter-toggle mx-4 block disabled">filter</div>
+        <div class="w-3/12 md:w-2/12 blur-wrapper lg:hidden text-center text-sm flex justify-end md:justify-center items-center">
+          <div class="filter-toggle block disabled" style="padding-bottom: 2px;">filter</div>
         </div>
 
-        <div class="w-2/12 md:w-4/12 flex justify-end lg:justify-center">
+        <div class="w-3/12 md:w-4/12 flex justify-end lg:justify-center">
           <div class="burger toggle-menu relative z-50">
             <span></span>
             <span></span>

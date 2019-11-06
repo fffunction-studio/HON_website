@@ -84,24 +84,24 @@ class Core {
       }
     }
 
-    scrollAnchors.forEach((anchor) => {
-      let actionDown = anchor.getAttribute('data-action-down')
-      let actionUp = anchor.getAttribute('data-action-up')
-      this.scenes.push(
-        new CoreScrollScene(
-          () => {
-            return Math.floor(offset(anchor).top)
-          },
-          () => {
-            scrollActions[actionDown]()
-          },
-          () => {
-            scrollActions[actionUp]()
-          },
-          false
-        )
-      )
-    })
+    // scrollAnchors.forEach((anchor) => {
+    //   let actionDown = anchor.getAttribute('data-action-down')
+    //   let actionUp = anchor.getAttribute('data-action-up')
+    //   this.scenes.push(
+    //     new CoreScrollScene(
+    //       () => {
+    //         return Math.floor(offset(anchor).top)
+    //       },
+    //       () => {
+    //         scrollActions[actionDown]()
+    //       },
+    //       () => {
+    //         scrollActions[actionUp]()
+    //       },
+    //       false
+    //     )
+    //   )
+    // })
   }
 
   createScenes() {

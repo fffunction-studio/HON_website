@@ -41,6 +41,10 @@
       </div>
     </section>
 
+    <section class="section absolute px-4 lg:hidden">
+      <!-- <img :src="baseUrl + '/dest/images/logo.svg'" alt=""> -->
+    </section>
+
     <section class="section filter blur-wrapper header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
       <div class="container">
         <div class="row justify-between">
@@ -274,7 +278,7 @@ export default {
         }, 100)
       }, 400)
     },
-    
+
     isActiveFilter(type, filter) {
       switch (type) {
         case 'project':
@@ -297,7 +301,11 @@ export default {
     }
   },
   computed: {
-    baseUrl() {
+    baseUrl() {      
+      if (window.location.host == 'fffunction.studio') {
+        return 'https://fffunction.studio/hongjie/public'
+      }
+
       return  window.location.protocol + '//' + window.location.host
 
       // if (window.location.hostname == 'localhost') {

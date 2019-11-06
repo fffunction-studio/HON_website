@@ -45,7 +45,7 @@
     </section>
 
     <section class="section px-4 lg:hidden">
-      <img src="/dest/images/logo.svg" alt="">
+      <!-- <img :src="baseUrl + '/dest/images/logo.svg'" alt=""> -->
     </section>
 
     <section class="section filter blur-wrapper hidden lg:block header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
@@ -96,7 +96,7 @@
           <div class="col home-list w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
             <transition-group class="list row flex-wrap" :class="{'fade': listFade, 'full-transitions': listTransition}" name="list">
               <div class="list-item col w-full md:w-6/12 mb-12" v-bind:key="index" v-for="(object, index) in objects" v-if="isVisible(object)">
-                <a :href="object.url">
+                <a class="no-underline" :href="object.url">
                   <figure class="w-full portrait">
                     <img :src="baseUrl + '/' + object.featuredImage.url" alt />
                   </figure>
@@ -323,6 +323,10 @@ export default {
   },
   computed: {
     baseUrl() {
+      if (window.location.host == 'fffunction.studio') {
+        return 'https://fffunction.studio/hongjie/public'
+      }
+
       return  window.location.protocol + '//' + window.location.host
 
       // if (window.location.hostname == 'localhost') {
