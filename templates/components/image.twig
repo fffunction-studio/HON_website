@@ -2,13 +2,17 @@
 
 {% set orientation = image.assetOrientation.value %}
 
-{% set transforms = [
+{# {% set transforms = [
   {handle: 'md', width:640}, 
   {handle: 'lg', width:1024}, 
   {handle: 'xl', width:1600}, 
   {handle: 'fw', width:2560}, 
+  ] %} #}
+  {% set transforms = [
+  {handle: 'lg', width:640}, 
+  {handle: 'xl', width:1024}
   ] %}
-{% set srcset = [] %}
+{% set srcset = [siteUrl ~ image.url() ~ ' 1280w'] %}
 
 {# if output width is smaller than or equal to the original image width #}
 {% for transform in transforms %}

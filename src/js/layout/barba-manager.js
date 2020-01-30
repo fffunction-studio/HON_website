@@ -11,7 +11,7 @@ class BarbaManager extends CoreModule {
       barba.init({
         transitions: [
           {
-            name: 'barba-left',
+            name: 'barba-fade',//name: 'barba-left',
             to: {
               custom: ({current, next, trigger}) => {
                 return next.namespace == "home"
@@ -53,7 +53,7 @@ class BarbaManager extends CoreModule {
             }
           },
           {
-            name: 'barba-left',
+            name: 'barba-fade',//name: 'barba-left',
             from: {
               custom: ({current, next, trigger}) => {
                 return (trigger == "popstate") || (next.url.path == '/index') || (next.url.path == '/journal')
@@ -96,7 +96,8 @@ class BarbaManager extends CoreModule {
             }
           },
           {
-            name: 'barba-right',
+            name: 'barba-fade',
+            // name: 'barba-right',
             beforeLeave() {
               document.body.classList.remove('barba-enter')
               document.body.classList.add('barba-leave')

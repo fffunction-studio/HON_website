@@ -1,120 +1,132 @@
 <template>
-  <div id="archive-app">
-    <div @click="onClick" class="hidden lg:block click-to-snap fixed w-full h-screen z-50" v-if="!isSnapped"></div>
+  <div id="archive-app" class="archive-app" v-bind:class="{ 'is-loading': isLoading }">
+    <div class="loader">
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>    
+    </div>
+    <div class="mainframe">
 
-    <section class="section filter-overlay header-offset fixed top-0 lg:hidden w-full pointer-events-none z-30 bg-white">
-      <div class="container blur-wrapper">
-        <div class="row justify-between">
-          <div class="col w-full md:w-6/12">
-            <p class="filter-label">Specimen</p>
-            <ul class="filter-list filter-left pointer-events-auto">
-              <li v-bind:class="{ active: isActiveFilter('project', '') }" v-on:click="removeFilter('project')">All</li>
-              <li v-bind:class="{ active: isActiveFilter('project', project.slug) }" v-bind:key="index" v-for="(project, index) in projects" v-on:click="toggleFilter('project', project.slug)">
-                {{ project.title }}
-                <div class="relative inline-block h-4" v-if="project.count">
-                  <div class="absolute top-0 left-0 text-xs">{{ project.count }}</div>
-                </div>
-              </li>
-            </ul>
-          </div>
+      <div @click="onClick" class="hidden lg:block click-to-snap fixed w-full h-screen z-50" v-if="!isSnapped"></div>
 
-          <div class="col w-full md:w-6/12">
-            <div class="row">
-              <div class="col w-6/12 md:w-auto md:flex-grow">
-                <p class="filter-label md:text-right">Type</p>
-                <ul class="filter-list filter-right md:text-right pointer-events-auto">
-                  <li v-bind:class="{ active: isActiveFilter('category', '') }" v-on:click="removeFilter('category')">All</li>
-                  <li v-bind:key="index" v-for="(category, index) in categories" v-on:click="toggleFilter('category', category.slug)">
-                    <span class="normal">{{ category.title }}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="col w-6/12 md:w-auto md:ml-12 md:flex-shrink">
-                <p class="filter-label md:text-right">Year</p>
-                <ul class="filter-list filter-right md:text-right pointer-events-auto">
-                  <li v-bind:class="{ active: isActiveFilter('edition', '') }" v-on:click="removeFilter('edition')">All</li>
-                  <li v-bind:key="index" v-for="(edition, index) in editions" v-on:click="toggleFilter('edition', edition.slug)">{{ edition.title }}</li>
-                </ul>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section px-4 lg:hidden">
-      <!-- <img :src="baseUrl + '/dest/images/logo.svg'" alt=""> -->
-    </section>
-
-    <section class="section filter blur-wrapper hidden lg:block header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
-      <div class="container filter-container" :class="{ opacity: !isSnapped }">
-        <div class="row justify-between">
-          <div class="col w-full md:w-6/12 lg:w-3/12">
-            <p class="filter-label">Specimen</p>
-            <ul class="filter-list filter-left pointer-events-auto">
-              <li v-bind:class="{ active: isActiveFilter('project', '') }" v-on:click="removeFilter('project')">All</li>
-              <li v-bind:class="{ active: isActiveFilter('project', project.slug) }" v-bind:key="index" v-for="(project, index) in projects" v-on:click="toggleFilter('project', project.slug)">
-                {{ project.title }}
-                <div class="relative inline-block h-4" v-if="project.count">
-                  <span class="invisible text-xs">{{ project.count }}</span>
-                  <span class="absolute top-0 left-0 text-xs">{{ project.count }}</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col hidden md:block md:w-6/12 lg:w-3/12 xl:w-2/12">
-            <div class="row">
-              <div class="col w-6/12 md:w-auto md:flex-grow">
-                <p class="filter-label md:text-right">Type</p>
-                <ul class="filter-list filter-right md:text-right pointer-events-auto">
-                  <li v-bind:class="{ active: isActiveFilter('category', '') }" v-on:click="removeFilter('category')">All</li>
-                  <li v-bind:class="{ active: isActiveFilter('category', category.slug) }" v-bind:key="index" v-for="(category, index) in categories" v-on:click="toggleFilter('category', category.slug)">{{ category.title }}</li>
-                </ul>
-              </div>
-
-              <div class="col w-6/12 md:w-auto md:ml-12 lg:ml-4 md:flex-shrink">
-                <p class="filter-label md:text-right">Year</p>
-                <ul class="filter-list filter-right md:text-right pointer-events-auto">
-                  <li v-bind:class="{ active: isActiveFilter('edition', '') }" v-on:click="removeFilter('edition')">All</li>
-                  <li v-bind:class="{ active: isActiveFilter('edition', edition.slug) }" v-bind:key="index" v-for="(edition, index) in editions" v-on:click="toggleFilter('edition', edition.slug)">{{ edition.title }}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="scroll-anchor w-full h-0" data-action-down="showFilterToggle" data-action-up="hideFilterToggle"></div>
-
-    <section :class="{ loose: !isSnapped }" class="section header-offset-no-ipad blur-wrapper z-10">
-      <div class="container">
-        <div class="row">
-          <div class="col home-list w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
-            <transition-group class="list row flex-wrap" :class="{'fade': listFade, 'full-transitions': listTransition}" name="list">
-              <div class="list-item col w-full md:w-6/12 mb-12" v-bind:key="index" v-for="(object, index) in objects" v-if="isVisible(object)">
-                <a class="no-underline" :href="object.url">
-                  <figure class="w-full portrait">
-                    <img :src="baseUrl + '/' + object.featuredImage.url" alt />
-                  </figure>
-                  <div class="flex justify-between mt-4">
-                    <div>{{ object.edition }}</div>
-                    <div class="text-right">
-                      {{ object.project.title }}
-                      <br />
-                      {{ object.category.title }}
-                    </div>
+      <section class="section filter-overlay header-offset fixed top-0 lg:hidden w-full pointer-events-none z-30 bg-white">
+        <div class="container blur-wrapper">
+          <div class="row justify-between">
+            <div class="col w-full md:w-6/12">
+              <p class="filter-label">Specimen</p>
+              <ul class="filter-list filter-left pointer-events-auto">
+                <li v-bind:class="{ active: isActiveFilter('project', '') }" v-on:click="removeFilter('project')">All</li>
+                <li v-bind:class="{ active: isActiveFilter('project', project.slug) }" v-bind:key="index" v-for="(project, index) in projects" v-on:click="toggleFilter('project', project.slug)">
+                  {{ project.title }}
+                  <div class="relative inline-block h-4" v-if="project.count">
+                    <div class="absolute top-0 left-0 text-xs">{{ project.count }}</div>
                   </div>
-                </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col w-full md:w-6/12">
+              <div class="row">
+                <div class="col w-6/12 md:w-auto md:flex-grow">
+                  <p class="filter-label md:text-right">Type</p>
+                  <ul class="filter-list filter-right md:text-right pointer-events-auto">
+                    <li v-bind:class="{ active: isActiveFilter('category', '') }" v-on:click="removeFilter('category')">All</li>
+                    <li v-bind:key="index" v-for="(category, index) in categories" v-on:click="toggleFilter('category', category.slug)">
+                      <span class="normal">{{ category.title }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col w-6/12 md:w-auto md:ml-12 md:flex-shrink">
+                  <p class="filter-label md:text-right">Year</p>
+                  <ul class="filter-list filter-right md:text-right pointer-events-auto">
+                    <li v-bind:class="{ active: isActiveFilter('edition', '') }" v-on:click="removeFilter('edition')">All</li>
+                    <li v-bind:key="index" v-for="(edition, index) in editions" v-on:click="toggleFilter('edition', edition.slug)">{{ edition.title }}</li>
+                  </ul>
+                </div>
+
               </div>
-            </transition-group>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="section px-4 lg:hidden">
+        <!-- <img :src="baseUrl + '/dest/images/logo.svg'" alt=""> -->
+      </section>
+
+      <section class="section filter blur-wrapper hidden lg:block header-offset-extra relative lg:fixed top-0 left-0 w-full pointer-events-none z-20">
+        <div class="container filter-container" :class="{ opacity: !isSnapped }">
+          <div class="row justify-between">
+            <div class="col w-full md:w-6/12 lg:w-3/12">
+              <p class="filter-label">Specimen</p>
+              <ul class="filter-list filter-left pointer-events-auto">
+                <li v-bind:class="{ active: isActiveFilter('project', '') }" v-on:click="removeFilter('project')">All</li>
+                <li v-bind:class="{ active: isActiveFilter('project', project.slug) }" v-bind:key="index" v-for="(project, index) in projects" v-on:click="toggleFilter('project', project.slug)">
+                  {{ project.title }}
+                  <div class="relative inline-block h-4" v-if="project.count">
+                    <span class="invisible text-xs">{{ project.count }}</span>
+                    <span class="absolute top-0 left-0 text-xs">{{ project.count }}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col hidden md:block md:w-6/12 lg:w-3/12 xl:w-2/12">
+              <div class="row">
+                <div class="col w-6/12 md:w-auto md:flex-grow">
+                  <p class="filter-label md:text-right">Type</p>
+                  <ul class="filter-list filter-right md:text-right pointer-events-auto">
+                    <li v-bind:class="{ active: isActiveFilter('category', '') }" v-on:click="removeFilter('category')">All</li>
+                    <li v-bind:class="{ active: isActiveFilter('category', category.slug) }" v-bind:key="index" v-for="(category, index) in categories" v-on:click="toggleFilter('category', category.slug)">{{ category.title }}</li>
+                  </ul>
+                </div>
+
+                <div class="col w-6/12 md:w-auto md:ml-12 lg:ml-4 md:flex-shrink">
+                  <p class="filter-label md:text-right">Year</p>
+                  <ul class="filter-list filter-right md:text-right pointer-events-auto">
+                    <li v-bind:class="{ active: isActiveFilter('edition', '') }" v-on:click="removeFilter('edition')">All</li>
+                    <li v-bind:class="{ active: isActiveFilter('edition', edition.slug) }" v-bind:key="index" v-for="(edition, index) in editions" v-on:click="toggleFilter('edition', edition.slug)">{{ edition.title }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="scroll-anchor w-full h-0" data-action-down="showFilterToggle" data-action-up="hideFilterToggle"></div>
+
+      <section :class="{ loose: !isSnapped }" class="section header-offset-no-ipad blur-wrapper z-10">
+        <div class="container">
+          <div class="row">
+            <div class="col home-list w-full lg:w-6/12 lg:ml-3/12 xl:w-8/12 xl:ml-2/12">
+              <transition-group class="list row flex-wrap" :class="{'fade': listFade, 'full-transitions': listTransition}" name="list">
+                <div class="list-item col w-full md:w-6/12 mb-12" v-bind:key="index" v-for="(object, index) in objects" v-if="isVisible(object)">
+                  <a class="no-underline" :href="object.url">
+                    <figure class="w-full portrait">
+                      <img :src="baseUrl + '/' + object.featuredImage.url" alt />
+                    </figure>
+                    <div class="flex justify-between mt-4">
+                      <div>{{ object.edition }}</div>
+                      <div class="text-right">
+                        {{ object.project.title }}
+                        <br />
+                        {{ object.category.title }}
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </transition-group>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    </div>
   </div>
 </template>
 
@@ -124,6 +136,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      axiosTasksDone: 0,
+      isLoading: true,
       isSnapped: false,
       listFade: false,
       listTransition: true,
@@ -149,11 +163,15 @@ export default {
             return b.edition - a.edition
           })
 
+          this.axiosTasksDone++
+
           axios
             .get(this.baseUrl + '/object-categories.json')
             .then((response) => {
               if (response.status == 200) {
                 this.categories = response.data.data
+
+                this.axiosTasksDone++
               }
             })
             .catch((error) => {
@@ -169,6 +187,8 @@ export default {
                 this.projects.forEach((project) => {
                   project.count = this.countObjects(project)
                 })
+
+                this.axiosTasksDone++
               }
             })
             .catch((error) => {
@@ -180,6 +200,8 @@ export default {
             .then((response) => {
               if (response.status == 200) {
                 this.editions = response.data.data
+
+                this.axiosTasksDone++
               }
             })
             .catch((error) => {
@@ -216,6 +238,9 @@ export default {
   },
   methods: {
     onClick() {
+      if (this.isLoading) {
+        return
+      }
       this.snap()
     },
     onScroll() {
@@ -335,6 +360,13 @@ export default {
       //   return '192.168.178.21:3000'
       // }
       // return 'https://fffunction.studio/hongjie/public'
+    }
+  },
+  watch: {
+    axiosTasksDone: function(val) {
+      if (this.axiosTasksDone > 3) {
+        this.isLoading = false
+      }
     }
   }
 }

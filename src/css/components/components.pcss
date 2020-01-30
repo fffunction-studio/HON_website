@@ -1,4 +1,60 @@
 /* purgecss start ignore */
+@keyframes dotFrames {
+  0% {
+    opacity: 0.25;
+    transform: scale(1)
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(0.5)
+  }
+  100% {
+    opacity: 0.25;
+    transform: scale(1)
+  }
+}
+
+.archive-app {
+  .loader {
+    @apply fixed inset-0 bg-white z-10 flex items-center justify-center opacity-0;
+    transition: opacity $medium ease;
+
+    .loading-dots {
+      @apply flex w-full h-2 justify-center;
+
+      .dot {
+        @apply rounded-full w-2 h-2 bg-black mx-4;
+        animation: dotFrames $medium linear infinite;
+        &:nth-child(1) {
+          animation-delay: 100ms;
+        }
+        &:nth-child(2) {
+          animation-delay: 200ms;
+        }
+        &:nth-child(3) {
+          animation-delay: 300ms;
+        }
+        &:nth-child(4) {
+          animation-delay: 400ms;
+        }
+      }
+    }
+  }
+  .mainframe {
+    @apply relative z-20;
+    transition: opacity $medium ease;
+  }
+
+  &.is-loading{
+    .loader { 
+      @apply opacity-100;
+    }
+    .mainframe {
+      @apply opacity-0;
+    }
+  }
+}
+
 button,
 .button {
     @apply px-4 py-2 bg-gray-400 mt-4;
@@ -79,7 +135,10 @@ table {
   .loose {
     .home-list {
       .list-item {
-        &:nth-child(odd) {
+        &:nth-child(1) {
+          margin-top: calc(75% - 96px);
+        }
+        &:nth-child(3) {
           margin-top: calc(75% - 96px);
         }
         &.col {
